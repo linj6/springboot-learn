@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnjecit.dao.product.ProductDao">
+    <resultMap id="productMap" type="com.lnjecit.view.entity.product.Product">
+        <id column="id" property="id"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_code" property="productCode"/>
+        <result column="brand" property="brand"/>
+        <result column="modelnumber" property="modelnumber"/>
+        <result column="price" property="price"/>
+        <result column="inventory_quantity" property="inventoryQuantity"/>
+        <result column="product_unit" property="productUnit"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,product_name,product_code,brand,modelnumber,price,inventory_quantity,product_unit,status,create_time
+    </sql>
+
+    <select id="getProductList" resultMap="productMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM product
+        <where>
+            1=1
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="productName != null">
+                AND product_name = #{productName}
+            </if>
+            <if test="productCode != null">
+                AND product_code = #{productCode}
+            </if>
+            <if test="brand != null">
+                AND brand = #{brand}
+            </if>
+            <if test="modelnumber != null">
+                AND modelnumber = #{modelnumber}
+            </if>
+            <if test="price != null">
+                AND price = #{price}
+            </if>
+            <if test="inventoryQuantity != null">
+                AND inventory_quantity = #{inventoryQuantity}
+            </if>
+            <if test="productUnit != null">
+                AND product_unit = #{productUnit}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="getProductById" resultMap="productMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM product WHERE id = #{id}
+
+    </select>
+
+    <delete id="deleteProductById" parameterType="java.lang.Integer">
+        UPDATE product set del = 0
+        WHERE id = #{id}
+
+    </delete>
+
+    <update id="updateProductById" parameterType="com.lnjecit.view.entity.product.Product">
+        UPDATE product
+        <set>
+            id=#{id},
+            product_name=#{productName},
+            product_code=#{productCode},
+            brand=#{brand},
+            modelnumber=#{modelnumber},
+            price=#{price},
+            inventory_quantity=#{inventoryQuantity},
+            product_unit=#{productUnit},
+            status=#{status},
+            create_time=#{createTime},
+        </set>
+        WHERE id = #{id}
+
+    </update>
+
+    <insert id="addProduct" parameterType="com.lnjecit.view.entity.product.Product" useGeneratedKeys="true"
+            keyProperty="id">
+		INSERT INTO product(id,product_name,product_code,brand,modelnumber,price,inventory_quantity,product_unit,status,create_time)
+		VALUES (#{id},#{productName},#{productCode},#{brand},#{modelnumber},#{price},#{inventoryQuantity},#{productUnit},#{status},#{createTime})
+
+	</insert>
+
+</mapper>
