@@ -11,14 +11,15 @@
     poi导入导出excel，支持.xls、.xlsx格式    
 
 ### 4.springboot-mybatis-redis-swagger2
-    a.整合springboot、mybatis、redis、swagger2
-    b.配置druid监控慢sql、响应时间长的接口 
-       访问地址：http://localhost:8080/druid/login.html         
-       用户名：admin 密码：admin
-       如图：https://ibb.co/cuSZoS
-    c.使用swagger2生成文档    
-       访问地址：http://localhost:8080/swagger-ui.html
-       如图：https://ibb.co/ftEQv7
-    d.使用PageHelper插件实现分页
-    e.使用logback记录日志
-    f.使用redis缓存数据
+
+-   <p style="line-height:23px">整合springboot、mybatis、redis、swagger2</p>
+-   <p style="line-height:23px"> 配置druid监控慢sql、响应时长的接口  
+    访问地址：http://localhost:8080/druid/login.html         
+    用户名：admin 密码：admin <br/>
+    如图：https://ibb.co/cuSZoS </p>
+-   <p style="line-height:23px"> 使用swagger2生成文档    
+    访问地址：http://localhost:8080/swagger-ui.html <br/>
+    如图：https://ibb.co/ftEQv </p>
+-   <p style="line-height:23px">使用PageHelper插件实现分页</p>
+-   <p style="line-height:23px">使用logback记录日志 <br/></p>   
+-   <p style="line-height:23px">使用redis缓存数据 <br/></p>
