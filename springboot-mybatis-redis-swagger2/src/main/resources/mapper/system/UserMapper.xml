@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnjecit.dao.system.UserDao">
+    <resultMap id="userMap" type="com.lnjecit.entity.system.User">
+        <id column="id" property="id"/>
+        <result column="mobile" property="mobile"/>
+        <result column="password" property="password"/>
+        <result column="del" property="del"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id,mobile,password,del,create_user_id,create_time,update_user_id,update_time
+	</sql>
+
+    <select id="query" resultMap="userMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user
+        <where>
+            del = 1
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="mobile != null">
+                AND mobile = #{mobile}
+            </if>
+            <if test="password != null">
+                AND password = #{password}
+            </if>
+            <if test="del != null">
+                AND del = #{del}
+            </if>
+            <if test="createUserId != null">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="updateUserId != null">
+                AND update_user_id = #{updateUserId}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == null or orderBy == ''">
+                ORDER BY update_time DESC
+            </when>
+            <when test="orderBy != null or orderBy != ''">
+                ORDER BY ${ orderBy }
+            </when>
+        </choose>
+    </select>
+
+    <select id="getById" resultMap="userMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user WHERE id = #{id} and del = 1
+    </select>
+
+    <delete id="deleteLogical" parameterType="java.lang.Long">
+		UPDATE t_user set del = 0
+		WHERE id = #{id}
+	</delete>
+
+    <update id="update" parameterType="com.lnjecit.entity.system.User">
+        UPDATE t_user
+        <set>
+            <if test="id != null">
+            id=#{id},
+            </if>
+            <if test="mobile != null">
+            mobile=#{mobile},
+            </if>
+            <if test="password != null">
+            password=#{password},
+            </if>
+            <if test="del != null">
+            del=#{del},
+            </if>
+            <if test="createUserId != null">
+            create_user_id=#{createUserId},
+            </if>
+            <if test="createTime != null">
+            create_time=#{createTime},
+            </if>
+            <if test="updateUserId != null">
+            update_user_id=#{updateUserId},
+            </if>
+            <if test="updateTime != null">
+            update_time=#{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="com.lnjecit.entity.system.User" useGeneratedKeys="true"
+            keyProperty="id">
+		INSERT INTO t_user(id,mobile,password,del,create_user_id,create_time,update_user_id,update_time)
+		VALUES (#{id},#{mobile},#{password},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+	</insert>
+
+</mapper>
