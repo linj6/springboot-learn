@@ -23,3 +23,8 @@
 -   <p style="line-height:23px">使用PageHelper插件实现分页</p>
 -   <p style="line-height:23px">使用logback记录日志 <br/></p>   
 -   <p style="line-height:23px">使用redis缓存数据 <br/></p>
+
+
+### 5.springboot-helloworld
+  
+    测试war、jar包、jar包和配置文件依赖包分开打包三种部署方式，为springboot内置tomcat设置虚拟目录   
