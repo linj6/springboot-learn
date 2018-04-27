@@ -89,6 +89,7 @@ public class CacheService extends CachingConfigurerSupport {
         factory.setPort(redisConn.getPort());
         factory.setPassword(redisConn.getPassword());
         factory.setTimeout(redisConn.getTimeout()); // 设置连接超时时间
+        factory.setDatabase(redisConn.getDatabase());
         return factory;
     }
 

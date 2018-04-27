@@ -15,6 +15,8 @@ public class RedisConn {
 
     private String password;
 
+    private int database;
+
 
     public String getHost() {
         return host;
@@ -48,6 +50,14 @@ public class RedisConn {
         this.password = password;
     }
 
+    public int getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(int database) {
+        this.database = database;
+    }
+
     @Override
     public String toString() {
         return "RedisConn{" +
@@ -55,6 +65,7 @@ public class RedisConn {
                 ", port=" + port +
                 ", timeout=" + timeout +
                 ", password='" + password + '\'' +
+                ", database='" + database + '\'' +
                 '}';
     }
 }
