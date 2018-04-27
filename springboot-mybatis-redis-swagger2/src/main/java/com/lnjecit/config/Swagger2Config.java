@@ -1,5 +1,7 @@
 package com.lnjecit.config;
 
+import com.google.common.base.Predicate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -18,13 +20,23 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class Swagger2Config {
 
+    // swagger是否开启 true:开启 false:不开启
+    @Value("${swagger.enable}")
+    private String enable;
+
     @Bean
     public Docket createRestApi() {
+        Predicate<String> predicate;
+        if ("true".equals(enable)) {
+            predicate = PathSelectors.any();
+         } else {
+            predicate = PathSelectors.none();
+        }
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.lnjecit.controller"))
-                .paths(PathSelectors.any())
+                .paths(predicate)
                 .build();
     }
 
