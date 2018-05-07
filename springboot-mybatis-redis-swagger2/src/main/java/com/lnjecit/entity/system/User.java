@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -14,6 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @ApiModel(value = "用户对象", description = "用户对象user")
 @Getter
 @Setter
+@ToString
 public class User extends BaseEntity {
 
 	@ApiModelProperty(value = "手机号", name = "mobile", required = true)
