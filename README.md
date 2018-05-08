@@ -27,4 +27,9 @@
 
 ### 5.springboot-helloworld
   
-    测试war、jar包、jar包和配置文件依赖包分开打包三种部署方式，为springboot内置tomcat设置虚拟目录   
+    测试war、jar包、jar包和配置文件依赖包分开打包三种部署方式，为springboot内置tomcat设置虚拟目录 
+    
+    
+### 6.springboot-elasticsearch  
+    
+     springboot整合elasticsearch,提供增删改查简单案例。（可参考慕课网学习视频：https://www.imooc.com/learn/889）
