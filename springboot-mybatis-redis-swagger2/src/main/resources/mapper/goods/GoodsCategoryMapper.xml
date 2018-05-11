@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnjecit.dao.goods.GoodsCategoryDao">
+    <resultMap id="goodsCategoryMap" type="com.lnjecit.entity.goods.GoodsCategory">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="level" property="level"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="sort" property="sort"/>
+        <result column="del" property="del"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id,name,level,parent_id,sort,del,create_time,create_user_id,update_time,update_user_id
+	</sql>
+
+    <select id="query" resultMap="goodsCategoryMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_goods_category
+        <where>
+            del = 1
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="name != null">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="goodsCategoryName != null and goodsCategoryName != ''">
+                AND name = #{goodsCategoryName}
+            </if>
+            <if test="level != null">
+                AND level = #{level}
+            </if>
+            <if test="parentId != null">
+                AND parent_id = #{parentId}
+            </if>
+            <if test="sort != null">
+                AND sort = #{sort}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="createUserId != null">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+            <if test="updateUserId != null">
+                AND update_user_id = #{updateUserId}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == null or orderBy == ''">
+                ORDER BY level,sort
+            </when>
+            <when test="orderBy != null or orderBy != ''">
+                ORDER BY ${ orderBy }
+            </when>
+        </choose>
+    </select>
+
+    <select id="getById" resultMap="goodsCategoryMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_goods_category WHERE id = #{id}
+    </select>
+
+    <delete id="deleteLogical">
+		UPDATE t_goods_category set del = 0
+		WHERE id = #{id}
+	</delete>
+
+    <update id="update" parameterType="com.lnjecit.entity.goods.GoodsCategory">
+        UPDATE t_goods_category
+        <set>
+            <if test="id != null and id != ''">
+                id=#{id},
+            </if>
+            <if test="name != null and name != ''">
+                name=#{name},
+            </if>
+            <if test="level != null and level != ''">
+                level=#{level},
+            </if>
+            <if test="parentId != null and parentId != ''">
+                parent_id=#{parentId},
+            </if>
+            <if test="sort != null and sort != ''">
+                sort=#{sort},
+            </if>
+            <if test="del != null and del != ''">
+                del=#{del},
+            </if>
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id=#{createUserId},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id=#{updateUserId},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="com.lnjecit.entity.goods.GoodsCategory" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_goods_category(id,name,level,parent_id,sort,del,create_time,create_user_id,update_time,update_user_id)
+		VALUES (#{id},#{name},#{level},#{parentId},#{sort},#{del},#{createTime},#{createUserId},#{updateTime},#{updateUserId})
+	</insert>
+
+</mapper>

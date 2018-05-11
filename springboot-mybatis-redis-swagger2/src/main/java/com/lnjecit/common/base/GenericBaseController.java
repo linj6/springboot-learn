@@ -133,7 +133,7 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
     @ApiOperation(value = "新增", notes = "新增", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     @PostMapping("/save")
-    public Result save(@Valid E entity, BindingResult bindingResult) {
+    public Result save(@Valid @RequestBody E entity, BindingResult bindingResult) {
         //如果验证不通过
         if (bindingResult.hasErrors()) {
             return Result.error(bindingResult.getFieldError().getDefaultMessage());

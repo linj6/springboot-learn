@@ -50,6 +50,13 @@ public interface BaseService<E> {
     Result deleteLogical(E entity);
 
     /**
+     * 逻辑批量删除
+     * @param ids
+     * @return
+     */
+    Result deleteLogicalBatch(@Param("ids") Long[] ids);
+
+    /**
      * 根据id查询
      * @param id
      * @return

@@ -122,6 +122,7 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Result deleteLogical(E entity) {
         try {
@@ -131,6 +132,21 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
             logger.error(MsgConstants.DELETE_FAIL, e);
             throw new ServiceException(MsgConstants.DELETE_FAIL);
         }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public Result deleteLogicalBatch(Long[] ids) {
+        try {
+            for (Long id : ids) {
+                dao.deleteLogical(id);
+                return Result.success(MsgConstants.DELETE_SUCCESS);
+            }
+        } catch (Exception e) {
+            logger.error(MsgConstants.DELETE_FAIL, e);
+            throw new ServiceException(MsgConstants.DELETE_FAIL);
+        }
+        return null;
     }
 
     @Override
@@ -200,11 +216,13 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
      */
     protected void beforeInsert(E entity) {
         Date date = new Date();
-        entity.setId(null);
+        //entity.setId(null);
         entity.setDel(Constants.YES);
         entity.setCreateTime(date);
         entity.setUpdateTime(date);
-        // TODO 创建人 修改人
+        // TODO 创建人 修改人 先写死，整合shiro后再获取
+        entity.setCreateUserId(1L);
+        entity.setUpdateUserId(1L);
     }
 
     /**
