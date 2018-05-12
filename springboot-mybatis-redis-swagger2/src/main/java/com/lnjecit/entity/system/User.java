@@ -18,10 +18,15 @@ import org.hibernate.validator.constraints.NotBlank;
 @ToString
 public class User extends BaseEntity {
 
+    @ApiModelProperty(value = "用户名", name = "username", required = true)
+    @NotBlank(message = "用户名不能为空")
+    private String username;
+
 	@ApiModelProperty(value = "手机号", name = "mobile", required = true)
 	@NotBlank(message = "手机号码不能为空")
 	private String mobile;//手机号码
-	@ApiModelProperty(value = "密码", name = "password", required = true)
+
+    @ApiModelProperty(value = "密码", name = "password", required = true)
 	@NotBlank(message = "密码不能为空")
 	private String password;//密码
 

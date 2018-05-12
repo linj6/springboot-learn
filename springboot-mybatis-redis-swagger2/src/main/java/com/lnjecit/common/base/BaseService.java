@@ -65,10 +65,10 @@ public interface BaseService<E> {
 
     /**
      * 根据参数查询返回持久化对象集合
-     * @param param 查询参数
+     * @param params 查询参数
      * @return
      */
-    List<E> query(Map<String, Object> param);
+    List<E> query(Map<String, Object> params);
 
     /**
      * 查询全部持久化对象
@@ -78,8 +78,8 @@ public interface BaseService<E> {
 
     /**
      * 分页查询
-     * @param param
+     * @param params
      * @return
      */
-    Result queryPage(Map<String, Object> param, PageInfo<?> pageInfo);
+    Result queryPage(Map<String, Object> params, PageInfo<?> pageInfo);
 }

@@ -33,15 +33,15 @@ public final class PageBuiler {
         this.pageSize = pageSize;
     }
 
-    public PageBuiler(Map<String, Object> param) {
-        init(param);
+    public PageBuiler(Map<String, Object> params) {
+        init(params);
     }
 
-    private void init(Map<String, Object> param) {
-        if (null != param) {
+    private void init(Map<String, Object> params) {
+        if (null != params) {
             try {
-                Object start = param.get("pageNum");
-                Object rows = param.get("pageSize");
+                Object start = params.get("pageNum");
+                Object rows = params.get("pageSize");
                 if (start != null) {
                     pageNum = Integer.parseInt(start.toString());
                 } else {
@@ -61,8 +61,8 @@ public final class PageBuiler {
         }
     }
 
-    public static final PageInfo<?> builder(Map<String, Object> param) {
-        return new PageBuiler(param).build();
+    public static final PageInfo<?> builder(Map<String, Object> params) {
+        return new PageBuiler(params).build();
     }
 
     public PageInfo<?> build() {

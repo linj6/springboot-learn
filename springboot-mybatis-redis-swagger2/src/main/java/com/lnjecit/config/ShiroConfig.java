@@ -72,10 +72,17 @@ public class ShiroConfig {
 
         //设置不验证的url
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/index", "anon");
-        filterChainDefinitionMap.put("/index.html", "anon");
+
         // swagger
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+        filterChainDefinitionMap.put("/webjars/**", "anon");
+
+        // druid
+        filterChainDefinitionMap.put("/druid/**", "anon");
+
+        // 首页
+        filterChainDefinitionMap.put("/index", "anon");
+        filterChainDefinitionMap.put("/index.html", "anon");
         // 登录
         filterChainDefinitionMap.put("/login", "anon");
         // 退出登录
@@ -91,9 +98,11 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/ueditor/exec", "anon");
         // 错误处理
         filterChainDefinitionMap.put("/error/**", "anon");
+        // 代码生成
+        filterChainDefinitionMap.put("/generator/**", "anon");
 
         // filterChainDefinitionMap.put("/goodsCategory/**", "authc");
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilter;

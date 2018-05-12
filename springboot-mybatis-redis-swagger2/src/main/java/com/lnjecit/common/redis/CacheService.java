@@ -21,10 +21,6 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author sandsa redis cache service
- */
-
 @Configuration
 @EnableCaching
 public class CacheService extends CachingConfigurerSupport {

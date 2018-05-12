@@ -35,7 +35,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lnjecit.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.lnjecit"))
                 .paths(predicate)
                 .build();
     }
@@ -43,7 +43,7 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("springboot利用swagger构建api文档")
-                .description("springboot整合mybatis、redis、swagger2")
+                .description("springboot整合mybatis、redis、swagger2、shiro")
                 .termsOfServiceUrl("http://www.cnblogs.com/zuidongfeng/")
                 .version("1.0")
                 .build();

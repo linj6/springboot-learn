@@ -11,10 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
@@ -52,7 +49,7 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
     @ApiOperation(value = "获取详情", notes = "根据id来获取详情")
     @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Long", paramType = "query")
     @ResponseBody
-    @PostMapping("getById")
+    @GetMapping("getById")
     protected Result getById(@RequestParam("id") Long id) {
         E entity = service.getById(id);
         if (null != entity) {
@@ -65,7 +62,7 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
      * 查询前处理
      * @param param
      */
-    protected void beforeList(Map<String, Object> param) {
+    protected void beforeList(Map<String, Object> params) {
 
     }
 
@@ -76,11 +73,11 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
             @ApiImplicitParam(name = "orderBy", value = "排序", dataType = "int", paramType = "query", example = "updateTime desc, id asc")
     })
     @ResponseBody
-    @PostMapping("/list")
-    public Result list(@RequestParam(required = false) @ApiIgnore Map<String, Object> param) {
-        beforeList(param);
-        PageInfo<?> pageInfo = PageBuiler.builder(param);
-        Result result = service.queryPage(param, pageInfo);
+    @GetMapping("/list")
+    public Result list(@RequestParam(required = false) @ApiIgnore Map<String, Object> params) {
+        beforeList(params);
+        PageInfo<?> pageInfo = PageBuiler.builder(params);
+        Result result = service.queryPage(params, pageInfo);
         Map<String, Object> data = (Map<String, Object>) result.getData();
         List<E> entities = (List<E>) data.get(Constants.LIST);
         if (entities != null && entities.size() > 0) {
@@ -93,15 +90,15 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
 
     /**
      * 列表查询（不分页）
-     * @param param
+     * @param params
      * @return
      */
     @ApiOperation(value = "列表查询（不分页）", notes = "列表查询（不分页）")
     @ApiImplicitParam(name = "orderBy", value = "排序", dataType = "int", paramType = "query", example = "updateTime desc, id asc")
-    @PostMapping("/listNoPage")
-    public Result listNoPage(@RequestParam(required = false) @ApiIgnore Map<String, Object> param) {
-        beforeList(param);
-        List<E> entities = service.query(param);
+    @GetMapping("/listNoPage")
+    public Result listNoPage(@RequestParam(required = false) @ApiIgnore Map<String, Object> params) {
+        beforeList(params);
+        List<E> entities = service.query(params);
         for (E entity : entities) {
             entityAfter(entity);
         }

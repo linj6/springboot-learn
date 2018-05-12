@@ -160,15 +160,15 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
     }
 
     @Override
-    public List<E> query(Map<String, Object> param) {
-        if (!CollectionUtils.isEmpty(param)) {
-            Object orderByParam = param.get(ORDER_BY);
+    public List<E> query(Map<String, Object> params) {
+        if (!CollectionUtils.isEmpty(params)) {
+            Object orderByParam = params.get(ORDER_BY);
             if (null != orderByParam && StringUtil.isNotBlank(String.valueOf(orderByParam))) {
-                param.put(ORDER_BY, StringUtil.camel2Underline(String.valueOf(orderByParam)));
+                params.put(ORDER_BY, StringUtil.camel2Underline(String.valueOf(orderByParam)));
             }
         }
         try {
-            return dao.query(param);
+            return dao.query(params);
         } catch (Exception e) {
             logger.error(MsgConstants.QUERY_FAIL, e);
             throw new ServiceException(MsgConstants.QUERY_FAIL);

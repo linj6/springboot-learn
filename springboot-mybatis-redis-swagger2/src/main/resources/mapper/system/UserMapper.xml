@@ -3,6 +3,7 @@
 <mapper namespace="com.lnjecit.dao.system.UserDao">
     <resultMap id="userMap" type="com.lnjecit.entity.system.User">
         <id column="id" property="id"/>
+        <result column="username" property="username"/>
         <result column="mobile" property="mobile"/>
         <result column="password" property="password"/>
         <result column="del" property="del"/>
@@ -13,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-		id,mobile,password,del,create_user_id,create_time,update_user_id,update_time
+        id,username,mobile,password,del,create_user_id,create_time,update_user_id,update_time
 	</sql>
 
     <select id="query" resultMap="userMap">
@@ -25,14 +26,11 @@
             <if test="id != null">
                 AND id = #{id}
             </if>
+            <if test="username != null and username != null">
+                username LIKE CONCAT('%',#{username},'%')
+            </if>
             <if test="mobile != null">
-                AND mobile = #{mobile}
-            </if>
-            <if test="password != null">
-                AND password = #{password}
-            </if>
-            <if test="del != null">
-                AND del = #{del}
+                AND mobile LIKE CONCAT('%',#{mobile},'%')
             </if>
             <if test="createUserId != null">
                 AND create_user_id = #{createUserId}
@@ -72,28 +70,31 @@
         UPDATE t_user
         <set>
             <if test="id != null">
-            id=#{id},
+                id=#{id},
+            </if>
+            <if test="username != null">
+                username=#{username},
             </if>
             <if test="mobile != null">
-            mobile=#{mobile},
+                mobile=#{mobile},
             </if>
             <if test="password != null">
-            password=#{password},
+                password=#{password},
             </if>
             <if test="del != null">
-            del=#{del},
+                del=#{del},
             </if>
             <if test="createUserId != null">
-            create_user_id=#{createUserId},
+                create_user_id=#{createUserId},
             </if>
             <if test="createTime != null">
-            create_time=#{createTime},
+                create_time=#{createTime},
             </if>
             <if test="updateUserId != null">
-            update_user_id=#{updateUserId},
+                update_user_id=#{updateUserId},
             </if>
             <if test="updateTime != null">
-            update_time=#{updateTime},
+                update_time=#{updateTime},
             </if>
         </set>
         WHERE id = #{id}
@@ -101,8 +102,9 @@
 
     <insert id="insert" parameterType="com.lnjecit.entity.system.User" useGeneratedKeys="true"
             keyProperty="id">
-		INSERT INTO t_user(id,mobile,password,del,create_user_id,create_time,update_user_id,update_time)
-		VALUES (#{id},#{mobile},#{password},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+        INSERT INTO t_user(id,username,mobile,password,del,create_user_id,create_time,update_user_id,update_time)
+        VALUES
+        (#{id},#{username},#{mobile},#{password},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
 	</insert>
 
 </mapper>

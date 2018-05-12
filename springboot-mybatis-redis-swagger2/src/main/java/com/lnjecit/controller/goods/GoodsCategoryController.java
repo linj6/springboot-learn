@@ -21,10 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author
- * @create 2018-04-27 13:21
- **/
 @Api(value = "商品分类", description = "商品分类api")
 @RequestMapping("/goodsCategory")
 @RestController
@@ -32,6 +28,14 @@ public class GoodsCategoryController {
 
     @Autowired
     private GoodsCategoryService goodsCategoryService;
+
+    @ApiOperation(value = "获取详情", notes = "根据id来获取详情")
+    @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "Long", paramType = "query")
+    @ResponseBody
+    @GetMapping("getById")
+    protected Result getById(@RequestParam("id") Long id) {
+        return Result.success(goodsCategoryService.getById(id));
+    }
 
     @ApiOperation(value = "列表查询（分页）", notes = "列表查询（分页）")
     @ApiImplicitParams({
@@ -41,15 +45,15 @@ public class GoodsCategoryController {
             @ApiImplicitParam(name = "name", value = "名称", dataType = "string", paramType = "query"),
     })
     @ResponseBody
-    @PostMapping("/list")
-    public Result list(@RequestParam(required = false) @ApiIgnore Map<String, Object> param) {
-        PageInfo<?> pageInfo = PageBuiler.builder(param);
-        return goodsCategoryService.queryPage(param, pageInfo);
+    @GetMapping("/list")
+    public Result list(@RequestParam(required = false) @ApiIgnore Map<String, Object> params) {
+        PageInfo<?> pageInfo = PageBuiler.builder(params);
+        return goodsCategoryService.queryPage(params, pageInfo);
     }
 
     @ApiOperation(value = "以树形结构返回商品列表", notes = "以树形结构返回商品列表")
     @ResponseBody
-    @PostMapping("/listTree")
+    @GetMapping("/listTree")
     public Result listTree() {
         List<GoodsCategory> goodsCategoryList = goodsCategoryService.getGoodsCategoryTreeList();
         Map<String, List<GoodsCategory>> resultMap = new HashMap<>();
@@ -87,7 +91,7 @@ public class GoodsCategoryController {
         return goodsCategoryService.deleteLogical(id);
     }
 
-    @ApiOperation(value = "删除", notes = "根据id来删除")
+    @ApiOperation(value = "批量删除", notes = "根据id来批量删除")
     @ApiImplicitParam(name = "ids", value = "ids", required = true, dataType = "Long", paramType = "query")
     @ResponseBody
     @PostMapping("/deleteBatch")

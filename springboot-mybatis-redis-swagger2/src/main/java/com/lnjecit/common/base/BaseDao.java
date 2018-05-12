@@ -58,10 +58,10 @@ public interface BaseDao<E extends BaseEntity> {
 
     /**
      * 根据参数查询返回持久化对象集合
-     * @param param 查询参数
+     * @param params 查询参数
      * @return
      */
-    List<E> query(Map<String, Object> param);
+    List<E> query(Map<String, Object> params);
 
     /**
      * 查询全部持久化对象
@@ -71,9 +71,9 @@ public interface BaseDao<E extends BaseEntity> {
 
     /**
      * 分页查询
-     * @param param
+     * @param params
      * @return
      */
-    List<E> queryPage(Map<String, Object> param);
+    List<E> queryPage(Map<String, Object> params);
 
 }
