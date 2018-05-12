@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
         <commons-io-version>2.5</commons-io-version>
         <druid-version>1.1.2</druid-version>
+        <shiro.version>1.3.2</shiro.version>
     </properties>
 
     <dependencies>
@@ -93,6 +94,23 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

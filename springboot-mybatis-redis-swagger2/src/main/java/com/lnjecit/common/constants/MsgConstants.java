@@ -20,4 +20,8 @@ public interface MsgConstants {
     String ENTITY_CAN_NOT_NULL = "实体对象不能为空";
     String ID_CAN_NOT_NULL = "id不能为空";
 
+
+    String NOT_LOGIN = "未登录";
+    String USERNAME_OR_PASSWORD_ERROR = "用户名或密码错误";
+
 }
