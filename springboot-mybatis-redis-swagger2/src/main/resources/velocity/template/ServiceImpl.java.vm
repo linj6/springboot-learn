@@ -1,0 +1,16 @@
+package ${package}.service.impl.${moduleName};
+
+        import org.springframework.stereotype.Service;
+        import ${package}.entity.${moduleName}.${className};
+        import ${package}.common.base.BaseServiceImpl;
+        import ${package}.dao.${moduleName}.${className}Dao;
+        import ${package}.service.${moduleName}.${className}Service;
+
+/**
+ * Create by ${authorName}
+ * create time: ${datetime}
+ */
+@Service
+public class ${className}ServiceImpl extends BaseServiceImpl<${className}Dao, ${className}> implements ${className}Service {
+
+}

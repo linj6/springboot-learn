@@ -1,0 +1,12 @@
+package ${package}.dao.${moduleName};
+
+        import ${package}.common.base.BaseDao;
+        import ${package}.entity.${moduleName}.${className};
+
+/**
+ * Create by ${authorName}
+ * create time: ${datetime}
+ */
+public interface ${className}Dao extends BaseDao<${className}> {
+
+}

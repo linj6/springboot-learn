@@ -1,0 +1,12 @@
+package ${package}.service.${moduleName};
+
+        import ${package}.entity.${moduleName}.${className};
+        import ${package}.common.base.BaseService;
+
+/**
+ * Create by ${authorName}
+ * create time: ${datetime}
+ */
+public interface ${className}Service extends BaseService<${className}> {
+
+}

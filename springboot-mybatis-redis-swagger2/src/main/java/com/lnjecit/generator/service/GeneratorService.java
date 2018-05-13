@@ -1,6 +1,7 @@
 package com.lnjecit.generator.service;
 
-import com.lnjecit.generator.entity.TableEntity;
+import com.lnjecit.generator.entity.GeneratorParam;
+import com.lnjecit.generator.entity.Table;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface GeneratorService {
      * @param params 查询参数
      * @return
      */
-    List<TableEntity> getTableList(Map<String, Object> params);
+    List<Table> getTableList(Map<String, Object> params);
 
     /**
      * 通过表名查询表信息
@@ -22,5 +23,12 @@ public interface GeneratorService {
      * @param tableName 表名
      * @return
      */
-    TableEntity getTableByName(@Param("tableName") String tableName);
+    Table getTableByName(@Param("tableName") String tableName);
+
+    /**
+     * 生成代码
+     *
+     * @param generatorParam 参数
+     */
+    byte[] generateCode(GeneratorParam generatorParam);
 }

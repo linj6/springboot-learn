@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${package}.dao.${moduleName}.${className}Dao">
+    <resultMap id="${entityName}Map" type="${package}.entity.${moduleName}.${className}">
+        ${resultMap}
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ${baseColumnList}
+    </sql>
+
+    <select id="query" resultMap="${entityName}Map">
+        select
+        <include refid="Base_Column_List"/>
+        from ${tableName}
+        <where>
+            del = 1
+            <if test="del != null">
+                AND del = #{del}
+            </if>
+            <if test="createUserId != null">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="updateUserId != null">
+                AND update_user_id = #{updateUserId}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == null or orderBy == ''">
+                ORDER BY update_time DESC
+            </when>
+            <when test="orderBy != null or orderBy != ''">
+                ORDER BY ${ orderBy }
+            </when>
+        </choose>
+    </select>
+
+    <select id="getById" resultMap="${entityName}Map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_${entityName} WHERE id = #{id}
+    </select>
+
+    <delete id="deleteLogical">
+        UPDATE t_${entityName} set del = 0
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="${package}.view.entity.${moduleName}.${className}" useGeneratedKeys="true"
+            keyProperty="id">
+        ${insertSql}
+    </insert>
+
+    <update id="update" parameterType="${package}.view.entity.${moduleName}.${className}">
+        ${updateSql}
+    </update>
+</mapper>

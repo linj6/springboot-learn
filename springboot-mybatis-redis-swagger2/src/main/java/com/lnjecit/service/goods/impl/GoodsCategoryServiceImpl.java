@@ -139,7 +139,7 @@ public class GoodsCategoryServiceImpl extends BaseServiceImpl<GoodsCategoryDao, 
         } else {
             // 修改
             GoodsCategory oldGoodsCategory = super.getById(id);
-            if (null != goodsCategory) {
+            if (null != oldGoodsCategory) {
                 // 分类名称被修改
                 if (!name.equals(oldGoodsCategory.getName())) {
                     if (isExistNameByParentId(parentId, name)) {

@@ -62,4 +62,58 @@ public class StringUtil {
         }
         return builder.toString();
     }
+
+    /**
+     * 将字符串转换为驼峰命名格式
+     *
+     * @param before          要转换的字符串
+     * @param firstChar2Upper 首字母是否大写
+     * @return
+     */
+    public static String transferToCamel(String before, boolean firstChar2Upper) {
+        //不带"_"的字符串,则直接首字母大写后返回
+        if (!before.contains("_"))
+            return firstChar2Upper ? initCapitalize(before) : before;
+        String[] strs = before.split("_");
+        StringBuffer after = null;
+        if (firstChar2Upper) {
+            after = new StringBuffer(initCapitalize(strs[0]));
+        } else {
+            after = new StringBuffer(strs[0]);
+        }
+        for (int i = 1; i < strs.length; i++) {
+            after.append(initCapitalize(strs[i]));
+        }
+        return after.toString();
+    }
+
+    /**
+     * 字符串首字母大写
+     *
+     * @param str
+     * @return
+     */
+    public static String initCapitalize(String str) {
+        char[] ch = str.toCharArray();
+        if (ch[0] >= 'a' && ch[0] <= 'z') {
+            ch[0] = (char) (ch[0] - 32);
+        }
+        return new String(ch);
+    }
+
+    /**
+     * 字符串首字母小写
+     *
+     * @param str
+     * @return
+     */
+    public static String firstCharToLower(String str) {
+        char[] chars = new char[1];
+        chars[0] = str.charAt(0);
+        String tempStr = new String(chars);
+        if (chars[0] >= 'A' && chars[0] <= 'Z') {//当为字母时，则转换为小写
+            return str.replaceFirst(tempStr, new String(tempStr).toLowerCase());
+        }
+        return str;
+    }
 }

@@ -1,0 +1,29 @@
+package ${package}.view.entity.${moduleName};
+
+        import com.lnjecit.common.base.BaseEntity;
+        import lombok.Getter;
+        import lombok.Setter;
+        import io.swagger.annotations.ApiModel;
+
+#if(${hasBigDecimal})
+        import java.math.BigDecimal;
+#end
+
+#if(${hasDate})
+        import java.util.Date;
+#end
+
+/**
+ * Create by ${authorName}
+ * create time: ${datetime}
+ */
+@ApiModel(value = "", description = "")
+@Getter
+@Setter
+public class ${className} extends BaseEntity{
+
+#foreach ($field in $fieldList)
+private $field.fieldType $field.fieldName;//$field.fieldComment
+#end
+
+}

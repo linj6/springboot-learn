@@ -2,9 +2,11 @@ package com.lnjecit.generator.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 数据库表属性
@@ -14,7 +16,8 @@ import java.util.Date;
  **/
 @Getter
 @Setter
-public class TableEntity implements Serializable {
+@ToString
+public class Table implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,5 +30,7 @@ public class TableEntity implements Serializable {
     private String engine;//数据库引擎
 
     private Date createTime;//创建时间
+
+    private List<Column> columnList;//数据库列集合
 
 }

@@ -32,6 +32,7 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
 
     private Class<E> entityClass;
 
+    @SuppressWarnings("unchecked")
     public GenericBaseController() {
         Type type = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) type;
@@ -60,7 +61,7 @@ public class GenericBaseController<S extends BaseService<E>, E extends BaseEntit
 
     /**
      * 查询前处理
-     * @param param
+     * @param params
      */
     protected void beforeList(Map<String, Object> params) {
 
