@@ -1,5 +1,7 @@
 package com.lnjecit.common.shiro;
 
+import com.lnjecit.common.constants.Constants;
+import com.lnjecit.entity.system.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -28,6 +30,20 @@ public class ShiroUtils {
 
     public static void logout() {
         SecurityUtils.getSubject().logout();
+    }
+
+    public static User getLoginUser() {
+        return (User) ShiroUtils.getSessionAttribute(Constants.SESSION_USER);
+    }
+
+    public static Long getUserId() {
+        User user = getLoginUser();
+        return null == user ? null : user.getId();
+    }
+
+    public static String getLastLoginIp() {
+        User user = getLoginUser();
+        return null == user ? null : user.getLastLoginIp();
     }
 
 }

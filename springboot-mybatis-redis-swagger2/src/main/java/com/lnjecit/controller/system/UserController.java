@@ -17,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -64,11 +63,11 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "新增", notes = "新增", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @PostMapping("/save")
-    public Result save(@Valid @RequestBody User user, BindingResult bindingResult, HttpServletRequest request) {
+    public Result save(@Valid @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return Result.error(bindingResult.getFieldError().getDefaultMessage());
         }
-        user.setRegisterIp(getIpAddr(request));
+        user.setRegisterIp(getIpAddr());
         return userService.insert(user);
     }
 

@@ -16,4 +16,17 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     boolean existUsername(String username);
+
+    /**
+     * 通过用户名查询用户
+     *
+     * @param username 用户名
+     * @return
+     */
+    User getByUsername(String username);
+
+    /**
+     * 更新用最后登录信息
+     */
+    void updateLastLoginInfo();
 }

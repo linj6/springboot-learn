@@ -4,8 +4,6 @@ import com.lnjecit.common.base.BaseDao;
 import com.lnjecit.entity.system.User;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 /**
  * Create by lnj
  * create time: 2018-05-13 22:34:10
@@ -13,10 +11,10 @@ import java.util.List;
 public interface UserDao extends BaseDao<User> {
 
     /**
-     * 用户名是否存在
+     * 通过用户名查询用户
      *
      * @param username 用户名
      * @return
      */
-    List<User> getByUsername(@Param("username") String username);
+    User getByUsername(@Param("username") String username);
 }

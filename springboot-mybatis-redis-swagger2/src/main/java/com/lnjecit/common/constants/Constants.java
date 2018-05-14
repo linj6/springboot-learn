@@ -13,6 +13,8 @@ public interface Constants {
     String LIST = "list";
     String PAGE = "page";
 
+    String SESSION_USER = "loginUser";
+
     // 符号常量
     // 下划线
     String UNDERLINE = "_";
