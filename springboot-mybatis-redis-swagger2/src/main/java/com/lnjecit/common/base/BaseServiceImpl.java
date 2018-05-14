@@ -140,13 +140,12 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
         try {
             for (Long id : ids) {
                 dao.deleteLogical(id);
-                return Result.success(MsgConstants.DELETE_SUCCESS);
             }
+            return Result.success(MsgConstants.DELETE_SUCCESS);
         } catch (Exception e) {
             logger.error(MsgConstants.DELETE_FAIL, e);
             throw new ServiceException(MsgConstants.DELETE_FAIL);
         }
-        return null;
     }
 
     @Override

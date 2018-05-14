@@ -1,11 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lnjecit.dao.system.UserDao">
     <resultMap id="userMap" type="com.lnjecit.entity.system.User">
-        <id column="id" property="id"/>
         <result column="username" property="username"/>
-        <result column="mobile" property="mobile"/>
         <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="realname" property="realname"/>
+        <result column="mobile" property="mobile"/>
+        <result column="email" property="email"/>
+        <result column="avatar" property="avatar"/>
+        <result column="register_ip" property="registerIp"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="last_login_address" property="lastLoginAddress"/>
         <result column="del" property="del"/>
         <result column="create_user_id" property="createUserId"/>
         <result column="create_time" property="createTime"/>
@@ -14,23 +21,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,username,mobile,password,del,create_user_id,create_time,update_user_id,update_time
-	</sql>
+        id,username,password,nickname,realname,mobile,email,avatar,register_ip,last_login_time,last_login_ip,last_login_address,del,create_user_id,create_time,update_user_id,update_time
+    </sql>
 
     <select id="query" resultMap="userMap">
-        SELECT
+        select
         <include refid="Base_Column_List"/>
-        FROM t_user
+        from t_user
         <where>
             del = 1
-            <if test="id != null">
-                AND id = #{id}
-            </if>
-            <if test="username != null and username != null">
-                username LIKE CONCAT('%',#{username},'%')
-            </if>
-            <if test="mobile != null">
-                AND mobile LIKE CONCAT('%',#{mobile},'%')
+            <if test="del != null">
+                AND del = #{del}
             </if>
             <if test="createUserId != null">
                 AND create_user_id = #{createUserId}
@@ -58,39 +59,69 @@
     <select id="getById" resultMap="userMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM t_user WHERE id = #{id} and del = 1
+        FROM t_user WHERE id = #{id}
     </select>
 
-    <delete id="deleteLogical" parameterType="java.lang.Long">
-		UPDATE t_user set del = 0
-		WHERE id = #{id}
-	</delete>
+    <delete id="deleteLogical">
+        UPDATE t_user set del = 0
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.lnjecit.entity.system.User" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO t_user(id,username,password,nickname,realname,mobile,email,avatar,register_ip,last_login_time,last_login_ip,last_login_address,del,create_user_id,create_time,update_user_id,update_time)
+		VALUES (#{id},#{username},#{password},#{nickname},#{realname},#{mobile},#{email},#{avatar},#{registerIp},#{lastLoginTime},#{lastLoginIp},#{lastLoginAddress},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+    </insert>
 
     <update id="update" parameterType="com.lnjecit.entity.system.User">
         UPDATE t_user
         <set>
-            <if test="id != null">
+            <if test="id != null and id != ''">
                 id=#{id},
             </if>
-            <if test="username != null">
+            <if test="username != null and username != ''">
                 username=#{username},
             </if>
-            <if test="mobile != null">
-                mobile=#{mobile},
-            </if>
-            <if test="password != null">
+            <if test="password != null and password != ''">
                 password=#{password},
             </if>
-            <if test="del != null">
+            <if test="nickname != null and nickname != ''">
+                nickname=#{nickname},
+            </if>
+            <if test="realname != null and realname != ''">
+                realname=#{realname},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile=#{mobile},
+            </if>
+            <if test="email != null and email != ''">
+                email=#{email},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                avatar=#{avatar},
+            </if>
+            <if test="registerIp != null and registerIp != ''">
+                register_ip=#{registerIp},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time=#{lastLoginTime},
+            </if>
+            <if test="lastLoginIp != null and lastLoginIp != ''">
+                last_login_ip=#{lastLoginIp},
+            </if>
+            <if test="lastLoginAddress != null and lastLoginAddress != ''">
+                last_login_address=#{lastLoginAddress},
+            </if>
+            <if test="del != null and del != ''">
                 del=#{del},
             </if>
-            <if test="createUserId != null">
+            <if test="createUserId != null and createUserId != ''">
                 create_user_id=#{createUserId},
             </if>
             <if test="createTime != null">
                 create_time=#{createTime},
             </if>
-            <if test="updateUserId != null">
+            <if test="updateUserId != null and updateUserId != ''">
                 update_user_id=#{updateUserId},
             </if>
             <if test="updateTime != null">
@@ -100,11 +131,13 @@
         WHERE id = #{id}
     </update>
 
-    <insert id="insert" parameterType="com.lnjecit.entity.system.User" useGeneratedKeys="true"
-            keyProperty="id">
-        INSERT INTO t_user(id,username,mobile,password,del,create_user_id,create_time,update_user_id,update_time)
-        VALUES
-        (#{id},#{username},#{mobile},#{password},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
-	</insert>
-
+    <select id="getByUsername" resultMap="userMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_user
+        <where>
+            del = 1
+            AND username = #{username}
+        </where>
+    </select>
 </mapper>

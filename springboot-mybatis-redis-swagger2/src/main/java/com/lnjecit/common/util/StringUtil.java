@@ -3,6 +3,10 @@ package com.lnjecit.common.util;
 
 import com.lnjecit.common.constants.Constants;
 
+import java.math.BigDecimal;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 字符串工具类
  *
@@ -24,6 +28,7 @@ public class StringUtil {
 
     /**
      * 如果字符串为null，或空字符串，或全为空白字符串，返回true，否则返回false
+     *
      * @param str
      * @return
      */
@@ -44,11 +49,12 @@ public class StringUtil {
 
     /**
      * 驼峰法转下划线
+     *
      * @param line 源字符串
      * @return 转换后的字符串
      */
-    public static String camel2Underline(String line){
-        if(isBlank(line)){
+    public static String camel2Underline(String line) {
+        if (isBlank(line)) {
             return Constants.EMPTY_STRING;
         }
         StringBuilder builder = new StringBuilder();
@@ -115,5 +121,44 @@ public class StringUtil {
             return str.replaceFirst(tempStr, new String(tempStr).toLowerCase());
         }
         return str;
+    }
+
+    /**
+     * 匹配是否为数字
+     *
+     * @param str 可能为中文
+     * @return
+     */
+    public static boolean isNumeric(String str) {
+        // 该正则表达式可以匹配所有的数字 包括负数
+        Pattern pattern = Pattern.compile("-?[0-9]+(\\.[0-9]+)?");
+        String bigStr;
+        try {
+            bigStr = new BigDecimal(str).toString();
+        } catch (Exception e) {
+            // 异常 说明包含非数字
+            return false;
+        }
+        // matcher是全匹配
+        Matcher isNum = pattern.matcher(bigStr);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 用户名格式校验 只能包含英文字母、数字、下划线、@、.，32位
+     *
+     * @param username 用户名
+     * @return
+     */
+    public static boolean usernameFormatCheck(String username) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_-]+([\\w@.]{3,31}?)$");
+        Matcher m = pattern.matcher(username);
+        if (!m.matches()) {
+            return false;
+        }
+        return true;
     }
 }

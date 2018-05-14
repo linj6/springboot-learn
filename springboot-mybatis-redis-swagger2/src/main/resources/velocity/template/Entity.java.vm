@@ -3,6 +3,7 @@ package ${package}.view.entity.${moduleName};
         import com.lnjecit.common.base.BaseEntity;
         import lombok.Getter;
         import lombok.Setter;
+        import lombok.ToString;
         import io.swagger.annotations.ApiModel;
 
 #if(${hasBigDecimal})
@@ -20,6 +21,7 @@ package ${package}.view.entity.${moduleName};
 @ApiModel(value = "", description = "")
 @Getter
 @Setter
+@ToString
 public class ${className} extends BaseEntity{
 
 #foreach ($field in $fieldList)

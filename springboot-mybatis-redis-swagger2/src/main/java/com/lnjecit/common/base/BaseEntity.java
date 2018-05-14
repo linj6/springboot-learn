@@ -3,6 +3,7 @@ package com.lnjecit.common.base;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class BaseEntity implements Serializable {
      * 创建时间
      */
     @ApiModelProperty(name = "createTime", value = "创建时间", hidden = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     /**
      * 修改人id
@@ -41,6 +43,7 @@ public class BaseEntity implements Serializable {
      * 修改时间
      */
     @ApiModelProperty(name = "updateTime", value = "修改时间", hidden = true)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     /**
      * 删除标识 1:正常 0:已删除
