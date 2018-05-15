@@ -65,4 +65,13 @@ public class DateUtil {
         Date date = simpleDateFormat.parse(source);
         return date;
     }
+
+    /**
+     * 获得当前unix时间戳(单位秒)
+     *
+     * @return 当前unix时间戳
+     */
+    public static long currentTimeStamp() {
+        return System.currentTimeMillis() / 1000;
+    }
 }

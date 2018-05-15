@@ -52,12 +52,12 @@
         WHERE id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="${package}.view.entity.${moduleName}.${className}" useGeneratedKeys="true"
+    <insert id="insert" parameterType="${package}.entity.${moduleName}.${className}" useGeneratedKeys="true"
             keyProperty="id">
         ${insertSql}
     </insert>
 
-    <update id="update" parameterType="${package}.view.entity.${moduleName}.${className}">
+    <update id="update" parameterType="${package}.entity.${moduleName}.${className}">
         ${updateSql}
     </update>
 </mapper>

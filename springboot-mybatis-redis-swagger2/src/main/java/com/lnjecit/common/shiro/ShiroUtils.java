@@ -46,4 +46,10 @@ public class ShiroUtils {
         return null == user ? null : user.getLastLoginIp();
     }
 
+    public static String getUsername() {
+        User user = getLoginUser();
+        return null == user ? null : user.getUsername();
+    }
+
+
 }

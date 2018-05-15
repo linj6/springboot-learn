@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnjecit.dao.system.LogDao">
+    <resultMap id="logMap" type="com.lnjecit.entity.system.Log">
+        <result column="ip" property="ip"/>
+        <result column="ip_address" property="ipAddress"/>
+        <result column="description" property="description"/>
+        <result column="username" property="username"/>
+        <result column="request_uri" property="requestUri"/>
+        <result column="request_url" property="requestUrl"/>
+        <result column="request_method" property="requestMethod"/>
+        <result column="class_name" property="className"/>
+        <result column="method_name" property="methodName"/>
+        <result column="arguments" property="arguments"/>
+        <result column="result" property="result"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="spend_time" property="spendTime"/>
+        <result column="del" property="del"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,ip,ip_address,description,username,request_uri,request_url,request_method,class_name,method_name,arguments,result,start_time,end_time,spend_time,del,create_user_id,create_time,update_user_id,update_time
+    </sql>
+
+    <select id="query" resultMap="logMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_log
+        <where>
+            del = 1
+            <if test="del != null">
+                AND del = #{del}
+            </if>
+            <if test="createUserId != null">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="updateUserId != null">
+                AND update_user_id = #{updateUserId}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == null or orderBy == ''">
+                ORDER BY update_time DESC
+            </when>
+            <when test="orderBy != null or orderBy != ''">
+                ORDER BY ${ orderBy }
+            </when>
+        </choose>
+    </select>
+
+    <select id="getById" resultMap="logMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_log WHERE id = #{id}
+    </select>
+
+    <delete id="deleteLogical">
+        UPDATE t_log set del = 0
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.lnjecit.entity.system.Log" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO t_log(id,ip,ip_address,description,username,request_uri,request_url,request_method,class_name,method_name,arguments,result,start_time,end_time,spend_time,del,create_user_id,create_time,update_user_id,update_time)
+		VALUES (#{id},#{ip},#{ipAddress},#{description},#{username},#{requestUri},#{requestUrl},#{requestMethod},#{className},#{methodName},#{arguments},#{result},#{startTime},#{endTime},#{spendTime},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.lnjecit.entity.system.Log">
+        UPDATE t_log
+        <set>
+            <if test="id != null and id != ''">
+                id=#{id},
+            </if>
+            <if test="ip != null and ip != ''">
+                ip=#{ip},
+            </if>
+            <if test="ipAddress != null and ipAddress != ''">
+                ip_address=#{ipAddress},
+            </if>
+            <if test="description != null and description != ''">
+                description=#{description},
+            </if>
+            <if test="username != null and username != ''">
+                username=#{username},
+            </if>
+            <if test="requestUri != null and requestUri != ''">
+                request_uri=#{requestUri},
+            </if>
+            <if test="requestUrl != null and requestUrl != ''">
+                request_url=#{requestUrl},
+            </if>
+            <if test="requestMethod != null and requestMethod != ''">
+                request_method=#{requestMethod},
+            </if>
+            <if test="className != null and className != ''">
+                class_name=#{className},
+            </if>
+            <if test="methodName != null and methodName != ''">
+                method_name=#{methodName},
+            </if>
+            <if test="arguments != null and arguments != ''">
+                arguments=#{arguments},
+            </if>
+            <if test="result != null and result != ''">
+                result=#{result},
+            </if>
+            <if test="startTime != null and startTime != ''">
+                start_time=#{startTime},
+            </if>
+            <if test="endTime != null and endTime != ''">
+                end_time=#{endTime},
+            </if>
+            <if test="spendTime != null and spendTime != ''">
+                spend_time=#{spendTime},
+            </if>
+            <if test="del != null and del != ''">
+                del=#{del},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id=#{createUserId},
+            </if>
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id=#{updateUserId},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

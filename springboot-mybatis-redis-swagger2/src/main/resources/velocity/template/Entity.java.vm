@@ -1,4 +1,4 @@
-package ${package}.view.entity.${moduleName};
+package ${package}.entity.${moduleName};
 
         import com.lnjecit.common.base.BaseEntity;
         import lombok.Getter;

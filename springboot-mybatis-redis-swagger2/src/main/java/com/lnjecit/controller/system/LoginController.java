@@ -1,5 +1,6 @@
 package com.lnjecit.controller.system;
 
+import com.lnjecit.common.aspect.Log;
 import com.lnjecit.common.base.BaseController;
 import com.lnjecit.common.constants.Constants;
 import com.lnjecit.common.constants.MsgConstants;
@@ -40,6 +41,7 @@ public class LoginController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @Log(description = "登录")
     @ApiOperation(value = "用户登录", notes = "用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String", paramType = "query"),

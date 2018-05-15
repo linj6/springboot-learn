@@ -2,6 +2,7 @@ package com.lnjecit.common.result;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Result 返回结果封装
@@ -11,6 +12,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
+@ToString
 public class Result
 {
 
