@@ -57,16 +57,16 @@ CREATE TABLE `t_log` (
   `method_name` varchar(100) DEFAULT NULL COMMENT '方法名称',
   `arguments` mediumtext COMMENT '参数',
   `result` mediumtext COMMENT '返回结果',
-  `start_time` int(11) DEFAULT NULL COMMENT '开始时间',
-  `end_time` int(11) DEFAULT NULL COMMENT '结束时间',
-  `spend_time` int(11) DEFAULT NULL COMMENT '消耗时间',
+  `start_time` bigint(11) DEFAULT NULL COMMENT '开始时间',
+  `end_time` bigint(11) DEFAULT NULL COMMENT '结束时间',
+  `spend_time` bigint(11) DEFAULT NULL COMMENT '消耗时间',
   `del` smallint(1) DEFAULT '1' COMMENT '删除标识 1:正常 0:已删除',
   `create_user_id` bigint(4) DEFAULT NULL COMMENT '创建人id',
   `create_time` datetime DEFAULT NULL COMMENT '创建日期',
   `update_user_id` bigint(4) DEFAULT NULL COMMENT '修改人id',
   `update_time` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of t_log
@@ -81,8 +81,8 @@ CREATE TABLE `t_user` (
   `username` varchar(32) NOT NULL,
   `password` char(164) NOT NULL COMMENT '密码',
   `nickname` varchar(32) DEFAULT NULL COMMENT '昵称',
-  `realname` varchar(11) DEFAULT NULL COMMENT '真实姓名',
-  `mobile` char(11) NOT NULL COMMENT '手机号码',
+  `realname` varchar(32) DEFAULT NULL COMMENT '真实姓名',
+  `mobile` char(11) DEFAULT NULL COMMENT '手机号码',
   `email` varchar(32) DEFAULT NULL COMMENT '邮箱',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   `register_ip` varchar(64) DEFAULT NULL COMMENT '注册ip',
@@ -95,9 +95,11 @@ CREATE TABLE `t_user` (
   `update_user_id` bigint(4) DEFAULT NULL COMMENT '修改人id',
   `update_time` datetime DEFAULT NULL COMMENT '修改日期',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('7', '', '123456', null, null, '18900000000', null, null, null, null, null, null, '1', null, '2018-03-05 16:24:02', null, '2018-03-05 16:24:02');
+INSERT INTO `t_user` (`id`, `username`, `password`, `nickname`, `realname`, `mobile`, `email`, `avatar`, `register_ip`, `last_login_time`, `last_login_ip`, `last_login_address`, `del`, `create_user_id`, `create_time`, `update_user_id`, `update_time`) VALUES ('1', 'admin', '1000:0d20ed7af697444f232acaddb2b4a3cd4853c4b1a7657681:24f6a6c38cedbdfeb358e52fc7198ba0c4fd725ebe9a0863', 'admin', NULL, '18900000000', NULL, NULL, NULL, '2018-05-14 11:25:03', NULL, NULL, '1', '1', '2018-03-05 16:24:02', '1', '2018-03-05 16:24:02');
+INSERT INTO `t_user` (`id`, `username`, `password`, `nickname`, `realname`, `mobile`, `email`, `avatar`, `register_ip`, `last_login_time`, `last_login_ip`, `last_login_address`, `del`, `create_user_id`, `create_time`, `update_user_id`, `update_time`) VALUES ('8', 'lixunhuan', '1000:0d20ed7af697444f232acaddb2b4a3cd4853c4b1a7657681:24f6a6c38cedbdfeb358e52fc7198ba0c4fd725ebe9a0863', '小李飞刀', '', '', '', '', '', '2018-05-14 10:43:22', '', '', '1', '1', '2018-05-14 09:40:49', '1', '2018-05-14 09:40:49');
+INSERT INTO `t_user` (`id`, `username`, `password`, `nickname`, `realname`, `mobile`, `email`, `avatar`, `register_ip`, `last_login_time`, `last_login_ip`, `last_login_address`, `del`, `create_user_id`, `create_time`, `update_user_id`, `update_time`) VALUES ('9', 'afei', '1000:5c9d5870b00573ddb9451a26596fdcd1dc802cf0faa9dac6:eb469cbf34cb498722d34d6b5379d3aca5eca0e8214dba46', '阿飞', '阿飞啊', '18766779988', '18766779988@qq.com', '', '0:0:0:0:0:0:0:1', '2018-05-15 20:50:47', '', '', '1', '1', '2018-05-14 10:21:29', '1', '2018-05-15 20:50:47');

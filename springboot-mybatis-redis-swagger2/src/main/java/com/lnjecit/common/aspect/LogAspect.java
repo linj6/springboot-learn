@@ -1,7 +1,6 @@
 package com.lnjecit.common.aspect;
 
 import com.lnjecit.common.shiro.ShiroUtils;
-import com.lnjecit.common.util.DateUtil;
 import com.lnjecit.common.util.IpUtil;
 import com.lnjecit.service.IpAddressService;
 import com.lnjecit.service.system.LogService;
@@ -77,7 +76,7 @@ public class LogAspect {
             String requestMethod = request.getMethod();//请求类型
             String className = joinPoint.getTarget().getClass().getName();//类名称
             String methodName = signature.getName();//方法名称
-            Long startTime = DateUtil.currentTimeStamp();//开始时间
+            Long startTime = System.currentTimeMillis();//开始时间
 
             Object[] paramValues = joinPoint.getArgs();// 参数值
             String[] paramNames = ((CodeSignature) joinPoint.getSignature()).getParameterNames();// 参数名称
@@ -95,7 +94,7 @@ public class LogAspect {
             arguments.append("}");
 
             result = joinPoint.proceed();
-            Long endTime = DateUtil.currentTimeStamp();//结束时间
+            Long endTime = System.currentTimeMillis();//结束时间
             Long spendTime = endTime - startTime;//消耗时间
 
             logger.info("ip:" + ip);
