@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lnjecit.dao.system.UserRoleDao">
+    <resultMap id="userRoleMap" type="com.lnjecit.entity.system.UserRole">
+        <result column="user_id" property="userId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="del" property="del"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,role_id,del,create_user_id,create_time,update_user_id,update_time
+    </sql>
+
+    <select id="query" resultMap="userRoleMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_role
+        <where>
+            del = 1
+            <if test="del != null">
+                AND del = #{del}
+            </if>
+            <if test="createUserId != null">
+                AND create_user_id = #{createUserId}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="updateUserId != null">
+                AND update_user_id = #{updateUserId}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime}
+            </if>
+        </where>
+        <choose>
+            <when test="orderBy == null or orderBy == ''">
+                ORDER BY update_time DESC
+            </when>
+            <when test="orderBy != null or orderBy != ''">
+                ORDER BY ${ orderBy }
+            </when>
+        </choose>
+    </select>
+
+    <select id="getById" resultMap="userRoleMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_t_user_role WHERE id = #{id}
+    </select>
+
+    <delete id="deleteLogical">
+        UPDATE t_t_user_role set del = 0
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByUserId">
+        UPDATE t_user_role set del = 0
+        WHERE user_id = #{userId}
+    </delete>
+
+    <insert id="insert" parameterType="com.lnjecit.entity.system.UserRole" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO t_user_role(id,user_id,role_id,del,create_user_id,create_time,update_user_id,update_time)
+		VALUES (#{id},#{userId},#{roleId},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+    </insert>
+
+    <update id="update" parameterType="com.lnjecit.entity.system.UserRole">
+        UPDATE t_user_role
+        <set>
+            <if test="id != null and id != ''">
+                id=#{id},
+            </if>
+            <if test="userId != null and userId != ''">
+                user_id=#{userId},
+            </if>
+            <if test="roleId != null and roleId != ''">
+                role_id=#{roleId},
+            </if>
+            <if test="del != null and del != ''">
+                del=#{del},
+            </if>
+            <if test="createUserId != null and createUserId != ''">
+                create_user_id=#{createUserId},
+            </if>
+            <if test="createTime != null">
+                create_time=#{createTime},
+            </if>
+            <if test="updateUserId != null and updateUserId != ''">
+                update_user_id=#{updateUserId},
+            </if>
+            <if test="updateTime != null">
+                update_time=#{updateTime},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

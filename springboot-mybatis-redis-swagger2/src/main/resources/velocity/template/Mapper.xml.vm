@@ -44,11 +44,11 @@
     <select id="getById" resultMap="${entityName}Map">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM t_${entityName} WHERE id = #{id}
+        FROM ${tableName} WHERE id = #{id}
     </select>
 
     <delete id="deleteLogical">
-        UPDATE t_${entityName} set del = 0
+        UPDATE t_${tableName} set del = 0
         WHERE id = #{id}
     </delete>
 

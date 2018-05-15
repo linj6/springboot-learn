@@ -1,5 +1,7 @@
 package com.lnjecit.common.base;
 
+import com.lnjecit.common.constants.Constants;
+import com.lnjecit.common.shiro.ShiroUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,4 +52,14 @@ public class BaseEntity implements Serializable {
      */
     @ApiModelProperty(name = "del", value = "删除标识", hidden = true)
     private Integer del;
+
+    public void setDefaultValueForFields() {
+        Date date = new Date();
+        Long userId = ShiroUtils.getUserId();
+        setDel(Constants.YES);
+        setCreateTime(date);
+        setUpdateTime(date);
+        setCreateUserId(userId);
+        setUpdateUserId(userId);
+    }
 }

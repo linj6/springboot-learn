@@ -9,7 +9,9 @@ import com.lnjecit.common.util.PasswordHash;
 import com.lnjecit.common.util.PhoneFormatCheckUtil;
 import com.lnjecit.common.util.StringUtil;
 import com.lnjecit.dao.system.UserDao;
+import com.lnjecit.dao.system.UserRoleDao;
 import com.lnjecit.entity.system.User;
+import com.lnjecit.entity.system.UserRole;
 import com.lnjecit.service.IpAddressService;
 import com.lnjecit.service.system.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private UserRoleDao userRoleDao;
 
     @Autowired
     private IpAddressService ipAddressService;
@@ -97,6 +102,21 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         oldUser.setLastLoginAddress(ipAddressService.getAddressByIp(lastLoginIp));
 
         super.update(oldUser);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void selectRoles(Long userId, Long[] roleIds) throws Exception {
+        // 通过用户id删除用户与角色关联关系
+        userRoleDao.deleteByUserId(userId);
+
+        for (Long roleId : roleIds) {
+            UserRole userRole = new UserRole();
+            userRole.setUserId(userId);
+            userRole.setRoleId(roleId);
+            userRole.setDefaultValueForFields();
+            userRoleDao.insert(userRole);
+        }
     }
 
     @Override

@@ -101,8 +101,10 @@ public class ShiroConfig {
         // 代码生成
         filterChainDefinitionMap.put("/generator/**", "anon");
 
-        // filterChainDefinitionMap.put("/goodsCategory/**", "authc");
-//        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/goodsCategory/**", "authc");
+        filterChainDefinitionMap.put("/user/**", "authc");
+        filterChainDefinitionMap.put("/role/**", "authc");
+        // filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilter;

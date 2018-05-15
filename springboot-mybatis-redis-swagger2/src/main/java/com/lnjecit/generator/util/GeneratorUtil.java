@@ -54,8 +54,14 @@ public class GeneratorUtil {
         // 配置信息
         Properties generatorProperties = PropsUtil.loadProps(GENERATOR_PROPERTIES);
 
+        // 表前缀
+        String tablePrefix = generatorProperties.getProperty("tablePrefix");
+
+        // 表名
+//        table.setTableName(StringUtil.transferToCamel(table.getTableName().replace(tablePrefix, ""), false));
+
         // 表名转换成Java类名
-        String className = tableNameToClassName(table.getTableName(), generatorProperties.getProperty("tablePrefix"));
+        String className = tableNameToClassName(table.getTableName(), tablePrefix);
         className = StringUtil.initCapitalize(className);
 
         ClazzInfo clazzInfo = new ClazzInfo();
@@ -124,7 +130,7 @@ public class GeneratorUtil {
 
     public static String tableNameToClassName(String tableName, String tablePrefix) {
         if (StringUtil.isNotBlank(tableName)) {
-            return tableName.replace(tablePrefix, "");
+            return StringUtil.transferToCamel(tableName.replace(tablePrefix, ""), true);
         }
         throw new NullPointerException("tableName can not be null");
     }

@@ -29,4 +29,13 @@ public interface UserService extends BaseService<User> {
      * 更新用最后登录信息
      */
     void updateLastLoginInfo();
+
+    /**
+     * 为用户选择关联的角色
+     *
+     * @param userId  用户id
+     * @param roleIds 关联角色的id数组
+     * @return
+     */
+    void selectRoles(Long userId, Long[] roleIds) throws Exception;
 }
