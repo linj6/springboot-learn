@@ -30,6 +30,9 @@
         from t_user
         <where>
             del = 1
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%',#{username},'%')
+            </if>
             <if test="del != null">
                 AND del = #{del}
             </if>

@@ -48,7 +48,7 @@
     </select>
 
     <delete id="deleteLogical">
-        UPDATE t_${tableName} set del = 0
+        UPDATE ${tableName} set del = 0
         WHERE id = #{id}
     </delete>
 

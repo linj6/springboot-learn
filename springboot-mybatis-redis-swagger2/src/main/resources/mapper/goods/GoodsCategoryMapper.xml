@@ -36,7 +36,7 @@
             <if test="level != null">
                 AND level = #{level}
             </if>
-            <if test="parentId != null">
+            <if test="parentId != null and parentId != ''">
                 AND parent_id = #{parentId}
             </if>
             <if test="sort != null">

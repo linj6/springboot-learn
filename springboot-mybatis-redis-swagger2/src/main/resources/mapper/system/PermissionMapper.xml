@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lnjecit.dao.system.RoleDao">
-    <resultMap id="roleMap" type="com.lnjecit.entity.system.Role">
+<mapper namespace="com.lnjecit.dao.system.PermissionDao">
+    <resultMap id="permissionMap" type="com.lnjecit.entity.system.Permission">
+        <result column="parent_id" property="parentId"/>
         <result column="name" property="name"/>
+        <result column="permissions" property="permissions"/>
+        <result column="icon" property="icon"/>
+        <result column="url" property="url"/>
+        <result column="sort" property="sort"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
         <result column="del" property="del"/>
         <result column="create_user_id" property="createUserId"/>
         <result column="create_time" property="createTime"/>
@@ -11,17 +18,23 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,del,create_user_id,create_time,update_user_id,update_time
+        id,parent_id,name,permissions,icon,url,sort,type,status,del,create_user_id,create_time,update_user_id,update_time
     </sql>
 
-    <select id="query" resultMap="roleMap">
+    <select id="query" resultMap="permissionMap">
         select
         <include refid="Base_Column_List"/>
-        from t_role
+        from t_permission
         <where>
             del = 1
             <if test="name != null and name != ''">
                 AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="permissionName != null and permissionName != ''">
+                AND name = #{permissionName}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                AND parent_id = #{parentId}
             </if>
             <if test="del != null">
                 AND del = #{del}
@@ -49,40 +62,46 @@
         </choose>
     </select>
 
-    <select id="getById" resultMap="roleMap">
+    <select id="getById" resultMap="permissionMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM t_role WHERE id = #{id}
+        FROM t_permission WHERE id = #{id}
     </select>
 
     <delete id="deleteLogical">
-        UPDATE t_role set del = 0
+        UPDATE t_permission set del = 0
         WHERE id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="com.lnjecit.entity.system.Role" useGeneratedKeys="true"
+    <insert id="insert" parameterType="com.lnjecit.entity.system.Permission" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO t_role(id,name,del,create_user_id,create_time,update_user_id,update_time)
-		VALUES (#{id},#{name},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
+        INSERT INTO t_permission(id,parent_id,name,permissions,icon,url,sort,type,status,del,create_user_id,create_time,update_user_id,update_time)
+		VALUES (#{id},#{parentId},#{name},#{permissions},#{icon},#{url},#{sort},#{type},#{status},#{del},#{createUserId},#{createTime},#{updateUserId},#{updateTime})
     </insert>
 
-    <update id="update" parameterType="com.lnjecit.entity.system.Role">
-        UPDATE t_role
+    <update id="update" parameterType="com.lnjecit.entity.system.Permission">
+        UPDATE t_permission
         <set>
-            <if test="id != null and id != ''">
-                id=#{id},
+            <if test="parentId != null and parentId != ''">
+                parent_id=#{parentId},
             </if>
             <if test="name != null and name != ''">
                 name=#{name},
             </if>
+            permissions=#{permissions},
+            icon=#{icon},
+            url=#{url},
+            <if test="sort != null and sort != ''">
+                sort=#{sort},
+            </if>
+            <if test="type != null and type != ''">
+                type=#{type},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status},
+            </if>
             <if test="del != null and del != ''">
                 del=#{del},
-            </if>
-            <if test="createUserId != null and createUserId != ''">
-                create_user_id=#{createUserId},
-            </if>
-            <if test="createTime != null">
-                create_time=#{createTime},
             </if>
             <if test="updateUserId != null and updateUserId != ''">
                 update_user_id=#{updateUserId},

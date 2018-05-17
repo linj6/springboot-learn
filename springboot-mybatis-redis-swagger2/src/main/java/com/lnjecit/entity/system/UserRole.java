@@ -10,7 +10,7 @@ import lombok.ToString;
  * Create by lnj
  * create time: 2018-05-15 22:08:15
  */
-@ApiModel(value = "", description = "")
+@ApiModel(value = "用户角色关系", description = "用户角色关系")
 @Getter
 @Setter
 @ToString

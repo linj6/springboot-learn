@@ -7,6 +7,7 @@ import com.lnjecit.common.constants.MsgConstants;
 import com.lnjecit.common.exception.ServiceException;
 import com.lnjecit.common.page.SimplePage;
 import com.lnjecit.common.result.Result;
+import com.lnjecit.common.shiro.ShiroUtils;
 import com.lnjecit.common.util.SpringContextUtils;
 import com.lnjecit.common.util.StringUtil;
 import org.slf4j.Logger;
@@ -219,9 +220,8 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
         entity.setDel(Constants.YES);
         entity.setCreateTime(date);
         entity.setUpdateTime(date);
-        // TODO 创建人 修改人 先写死，整合shiro后再获取
-        entity.setCreateUserId(1L);
-        entity.setUpdateUserId(1L);
+        entity.setCreateUserId(ShiroUtils.getUserId());
+        entity.setUpdateUserId(ShiroUtils.getUserId());
     }
 
     /**
@@ -232,7 +232,7 @@ public class BaseServiceImpl<D extends BaseDao<E>, E extends BaseEntity> impleme
     protected void beforeUpdate(E entity) {
         Date date = new Date();
         entity.setUpdateTime(date);
-        // TODO 修改人
+        entity.setUpdateUserId(ShiroUtils.getUserId());
     }
 
 }

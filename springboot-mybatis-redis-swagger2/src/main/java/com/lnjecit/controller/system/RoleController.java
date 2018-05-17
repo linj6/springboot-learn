@@ -53,6 +53,7 @@ public class RoleController {
             @ApiImplicitParam(name = "pageNum", value = "页码", required = true, defaultValue = "1", dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页记录数", required = true, defaultValue = "10", dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "orderBy", value = "排序", dataType = "int", paramType = "query", example = "updateTime desc, id asc"),
+            @ApiImplicitParam(name = "name", value = "角色名称", dataType = "String", paramType = "query"),
     })
     @ResponseBody
     @GetMapping("/listNoPage")

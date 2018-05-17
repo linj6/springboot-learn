@@ -64,6 +64,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         return super.insert(user);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Result update(User user) {
         String mobile = user.getMobile();

@@ -53,6 +53,7 @@ public class GoodsCategoryServiceImpl extends BaseServiceImpl<GoodsCategoryDao, 
         return super.insert(goodsCategory);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Result update(GoodsCategory goodsCategory) {
         Result checkResult = checkBeforeEdit(goodsCategory);
@@ -71,9 +72,10 @@ public class GoodsCategoryServiceImpl extends BaseServiceImpl<GoodsCategoryDao, 
         return super.update(oldGoodsCategory);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Result deleteLogical(Long id) {
-        // 删除子分类即子分类下的子分类
+        // 删除子分类和子分类下的子分类
         List<Long> allChildIds = getAllChildIds(id);
         for (Long childId : allChildIds) {
             super.deleteLogical(childId);

@@ -104,6 +104,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/goodsCategory/**", "authc");
         filterChainDefinitionMap.put("/user/**", "authc");
         filterChainDefinitionMap.put("/role/**", "authc");
+        filterChainDefinitionMap.put("/permission/**", "authc");
         // filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
