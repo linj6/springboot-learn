@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>Animation List</h1>
+<ul>
+    #foreach ($animation in $animationList)
+        <li>$animation</li>
+    #end
+</ul>
+</body>
+</html>

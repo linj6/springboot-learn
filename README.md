@@ -33,3 +33,8 @@
 ### 6.springboot-elasticsearch  
     
      springboot整合elasticsearch,提供增删改查简单案例。（可参考慕课网学习视频：https://www.imooc.com/learn/889）
+     
+
+### 7.springboot-mail  
+    
+     springboot异步发送邮件：支持发送简单文本、html页面、velocity模板
