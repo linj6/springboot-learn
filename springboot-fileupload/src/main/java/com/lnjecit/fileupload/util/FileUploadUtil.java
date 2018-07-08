@@ -38,44 +38,72 @@ public class FileUploadUtil {
      */
     public static Result upload(Map<String, MultipartFile> mmf, String path, String prefix) {
         if (mmf == null || mmf.isEmpty()) {
-            return new Result(ResultCode.ERROR.getStatus(), "请上传文件", null);
-        } else {
-            List<Map<String, String>> list = new ArrayList<>();
-            Set<String> keys = mmf.keySet();
-            try {
-                for (String key : keys) {
-                    MultipartFile file = mmf.get(key);
-                    if (file != null && !file.isEmpty()) {
-                        String fileName = DateUtil.DateToString(new Date(), DateUtil.TIMESTAMP_TO_STRING_PATTERN);
-                        // 文件扩展名
-                        String suffix = getFileExtention(file);
-                        String newFileName = prefix + fileName + COMMA + suffix;
-                        //文件保存路径
-                        String urlPath = path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR + newFileName;
-                        //根目录
-                        String fileUploadPath = getFileUploadPath();
-                        String fileDirectory = fileUploadPath + FILE_SEPERATOR + path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR;
-                        String filePath = fileUploadPath + FILE_SEPERATOR + urlPath;
-                        File f = new File(fileDirectory);
-                        if (!f.exists() && !f.isDirectory()) {
-                            f.mkdirs();
-                        }
-                        // 转存文件
-                        file.transferTo(new File(filePath));
-                        //返回图片保存的相对路径和图片回显路径
-                        Map<String, String> data = new HashMap<>();
-                        data.put(RELATIVE_PATH, urlPath);
-                        data.put(ACCESS_PATH, getFileAccessUrl() + urlPath);
-                        list.add(data);
-                    }
-                }
-                return new Result(ResultCode.SUCCESS, MapUtil.getMap("list", list));
-            } catch (Exception e) {
-                logger.error("upload", e);
-                return new Result(ResultCode.ERROR.getStatus(), "文件上传失败！", null);
+            return Result.error("请上传文件");
+        }
+        List<Map<String, String>> list = new ArrayList<>();
+        Set<String> keys = mmf.keySet();
+        try {
+            for (String key : keys) {
+                MultipartFile file = mmf.get(key);
+                Map<String, String> data = upload(file, path, prefix);
+                list.add(data);
             }
+            return Result.success(MapUtil.getMap("list", list));
+        } catch (Exception e) {
+            logger.error("upload", e);
+            return Result.error(e.getMessage());
         }
     }
+
+    public static Map<String, String> upload(MultipartFile file, String path, String prefix) {
+        try {
+            if (file == null || file.isEmpty()) {
+                throw new RuntimeException("请上传文件");
+            }
+            String fileName = DateUtil.DateToString(new Date(), DateUtil.TIMESTAMP_TO_STRING_PATTERN);
+            // 文件扩展名
+            String suffix = getFileExtention(file);
+            String newFileName = prefix + fileName + COMMA + suffix;
+            //文件保存路径
+            String urlPath = path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR + newFileName;
+            //根目录
+            String fileUploadPath = getFileUploadPath();
+            String fileDirectory = fileUploadPath + FILE_SEPERATOR + path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR;
+            String filePath = fileUploadPath + FILE_SEPERATOR + urlPath;
+            File f = new File(fileDirectory);
+            if (!f.exists() && !f.isDirectory()) {
+                f.mkdirs();
+            }
+            // 转存文件
+            file.transferTo(new File(filePath));
+            //返回图片保存的相对路径和图片回显路径
+            Map<String, String> data = new HashMap<>();
+            data.put(RELATIVE_PATH, urlPath);
+            data.put(ACCESS_PATH, getFileAccessUrl() + urlPath);
+            return data;
+        } catch (Exception e) {
+            logger.error("upload", e);
+            throw new RuntimeException("上传文件失败");
+        }
+    }
+
+    public static List<Map<String, String>> upload(List<MultipartFile> fileList, String path, String prefix) {
+        if (fileList == null || fileList.isEmpty()) {
+            throw new RuntimeException("请上传文件");
+        }
+        List<Map<String, String>> list = new ArrayList<>();
+        try {
+            for (MultipartFile file : fileList) {
+                Map<String, String> data = upload(file, path, prefix);
+                list.add(data);
+            }
+            return list;
+        } catch (Exception e) {
+            logger.error("upload", e);
+            throw new RuntimeException("上传文件失败");
+        }
+    }
+
 
     /****************从配置文件中都读取文件的访问路径************************************/
     public static String getFileAccessUrl() {
@@ -109,6 +137,24 @@ public class FileUploadUtil {
      * @return
      */
     public static boolean isImage(String extension) {
-        return extension.equals("jpeg") || extension.equals("jpg") || extension.equals("gif") || extension.equals("bmp") || extension.equals("png");
+        String[] imageExtension = new String[]{"jpeg", "jpg", "gif", "bmp", "png"};
+
+        for (String e : imageExtension) if (extension.toLowerCase().equals(e)) return true;
+
+        return false;
+    }
+
+    /**
+     * 校验文件是否是图片格式
+     *
+     * @param file
+     * @return
+     */
+    public static boolean checkFileIsImage(MultipartFile file) {
+        if (file == null) {
+            return false;
+        }
+        String extension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(COMMA) + 1);
+        return FileUploadUtil.isImage(extension);
     }
 }
