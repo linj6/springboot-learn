@@ -38,3 +38,7 @@
 ### 7.springboot-mail  
     
      springboot异步发送邮件：支持发送简单文本、html页面、velocity模板
+     
+### 8.springboot-thumbnail
+    
+     springboot-thumbnail: 压缩图片  
