@@ -1,5 +1,6 @@
-package com.lnjecit.mail.springboot;
+package com.lnjecit.mail.springboot.service.impl;
 
+import com.lnjecit.mail.springboot.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

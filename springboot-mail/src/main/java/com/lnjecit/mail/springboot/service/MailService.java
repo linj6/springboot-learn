@@ -1,4 +1,4 @@
-package com.lnjecit.mail.springboot;
+package com.lnjecit.mail.springboot.service;
 
 public interface MailService {
 

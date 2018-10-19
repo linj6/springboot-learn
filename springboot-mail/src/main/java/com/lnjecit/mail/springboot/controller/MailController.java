@@ -1,5 +1,8 @@
-package com.lnjecit.mail.springboot;
+package com.lnjecit.mail.springboot.controller;
 
+import com.lnjecit.mail.springboot.MailTemplate;
+import com.lnjecit.mail.springboot.service.MailService;
+import com.lnjecit.mail.springboot.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -8,4 +8,13 @@
     <artifactId>springboot-learn</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>springboot-helloworld</module>
+        <module>girl</module>
+        <module>springboot-mybatis-redis-swagger2</module>
+        <module>springboot-fileupload</module>
+        <module>springboot-poi</module>
+        <module>springboot-mail</module>
+        <module>springboot-elasticsearch</module>
+    </modules>
 </project>

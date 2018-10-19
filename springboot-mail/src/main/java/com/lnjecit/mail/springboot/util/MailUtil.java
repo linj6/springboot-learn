@@ -1,4 +1,4 @@
-package com.lnjecit.mail.springboot;
+package com.lnjecit.mail.springboot.util;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -20,10 +20,10 @@ import java.util.Properties;
 public class MailUtil {
 
     // 编码
-    private final static String defautCharset = "UTF-8";
+    private final static String DAFAULT_CHARSET = "UTF-8";
 
     public static String getHtmlTemplateText(String templatePath) throws IOException {
-        return getHtmlTemplateText(templatePath, defautCharset);
+        return getHtmlTemplateText(templatePath, DAFAULT_CHARSET);
     }
 
     /**
@@ -38,13 +38,13 @@ public class MailUtil {
         if (StringUtils.isNotBlank(charset)) {
             template = FileUtils.readFileToString(file, charset);
         } else {
-            template = FileUtils.readFileToString(file, defautCharset);
+            template = FileUtils.readFileToString(file, DAFAULT_CHARSET);
         }
         return template;
     }
 
     public static String getTemplateText(String templatePath, Map<String, Object> map) {
-        return getTemplateText(templatePath, defautCharset, map);
+        return getTemplateText(templatePath, DAFAULT_CHARSET, map);
     }
 
     /**
