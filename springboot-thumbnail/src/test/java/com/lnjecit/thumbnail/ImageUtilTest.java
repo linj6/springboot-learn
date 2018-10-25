@@ -3,8 +3,6 @@ package com.lnjecit.thumbnail;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,10 +16,10 @@ public class ImageUtilTest {
      */
     @Test
     public void testGenerateThumbnail2Directory() throws IOException {
-        String path = "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\src\\main\\resources\\static\\image";
+        String path = "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\image";
         String[] files = new String[]{
-                "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\src\\main\\resources\\static\\image\\1.jpg",
-                "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\src\\main\\resources\\static\\image\\2.jpg"
+                "image/1.jpg",
+                "image/2.jpg"
         };
 
         List<String> list = ImageUtil.generateThumbnail2Directory(path, files);
@@ -33,9 +31,7 @@ public class ImageUtilTest {
      */
     @Test
     public void testGenerateDirectoryThumbnail() throws IOException {
-        String path = "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\src\\main\\resources\\static\\image";
+        String path = "D:\\workspace\\idea\\individual\\springboot-learn\\springboot-thumbnail\\image";
         ImageUtil.generateDirectoryThumbnail(path);
     }
-
-
 }
