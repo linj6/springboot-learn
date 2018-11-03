@@ -42,3 +42,7 @@
 ### 8.springboot-thumbnail
     
      springboot-thumbnail: 压缩图片  
+
+### 9.springboot-maven-multi
+    
+     springboot-maven-multi: springboot创建maven多模块项目

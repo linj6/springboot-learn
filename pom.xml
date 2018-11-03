@@ -16,5 +16,7 @@
         <module>springboot-poi</module>
         <module>springboot-mail</module>
         <module>springboot-elasticsearch</module>
+        <module>springboot-thumbnail</module>
+        <module>springboot-maven-multi</module>
     </modules>
 </project>
