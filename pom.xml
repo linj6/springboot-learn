@@ -18,5 +18,6 @@
         <module>springboot-elasticsearch</module>
         <module>springboot-thumbnail</module>
         <module>springboot-maven-multi</module>
+        <module>springboot-dubbo</module>
     </modules>
 </project>

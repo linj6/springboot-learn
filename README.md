@@ -46,3 +46,7 @@
 ### 9.springboot-maven-multi
     
      springboot-maven-multi: springboot创建maven多模块项目
+     
+### 10.springboot-dubbo
+    
+     springboot-dubbo: springboot整合dubbo
