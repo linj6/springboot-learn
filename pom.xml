@@ -19,5 +19,6 @@
         <module>springboot-thumbnail</module>
         <module>springboot-maven-multi</module>
         <module>springboot-dubbo</module>
+        <module>springboot-runner</module>
     </modules>
 </project>

@@ -50,3 +50,17 @@
 ### 10.springboot-dubbo
     
      springboot-dubbo: springboot整合dubbo
+     
+### 10.springboot-runner
+    
+     springboot-runner: springboot项目启动成功后执行一段代码的两种方式
+     方法一：实现ApplicationRunner接口
+     方法二：实现CommandLineRunner接口
+     当实现了多个接口时，可使用Order注解来指定执行顺序，值越小，先执行
+     
+     参考资料：https://blog.csdn.net/zknxx/article/details/52196427
+     
+      
+    
+     
+     
