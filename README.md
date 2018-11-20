@@ -51,7 +51,7 @@
     
      springboot-dubbo: springboot整合dubbo
      
-### 10.springboot-runner
+### 11.springboot-runner
     
      springboot-runner: springboot项目启动成功后执行一段代码的两种方式
      方法一：实现ApplicationRunner接口
@@ -60,6 +60,12 @@
      
      参考资料：https://blog.csdn.net/zknxx/article/details/52196427
      
+     
+### 12.springboot-rabbitmq
+    
+     springboot-rabbitmq: springboot整合rabbitmq
+     
+     参考资料：https://juejin.im/post/59f194e06fb9a0451329ec53
       
     
      

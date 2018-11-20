@@ -20,5 +20,6 @@
         <module>springboot-maven-multi</module>
         <module>springboot-dubbo</module>
         <module>springboot-runner</module>
+        <module>springboot-rabbitmq</module>
     </modules>
 </project>
