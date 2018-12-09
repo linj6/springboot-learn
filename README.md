@@ -66,6 +66,13 @@
      springboot-rabbitmq: springboot整合rabbitmq
      
      参考资料：https://juejin.im/post/59f194e06fb9a0451329ec53
+     
+     
+### 13.springboot-docker
+    
+     springboot-docker: 使用docker部署springboot
+     构建命令：mvn clean package -Dmaven.test.skip=true docker:build
+     参考资料：http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html
       
     
      

@@ -21,5 +21,6 @@
         <module>springboot-dubbo</module>
         <module>springboot-runner</module>
         <module>springboot-rabbitmq</module>
+        <module>springboot-docker</module>
     </modules>
 </project>

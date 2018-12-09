@@ -1,8 +1,8 @@
 package com.lnjecit.dubbo.dao.goods;
 
-import com.lnjecit.dubbo.common.base.BaseDao;
-import com.lnjecit.dubbo.entity.goods.GoodsCategory;
 
+import com.lnjecit.common.base.BaseDao;
+import com.lnjecit.entity.goods.GoodsCategory;
 
 /**
  * Create by lnj
