@@ -26,6 +26,7 @@ public class GirlController {
 
     /**
      * 查询所有女生列表
+     *
      * @return
      */
     @GetMapping(value = "/girls")
@@ -36,16 +37,17 @@ public class GirlController {
 
     /**
      * 添加一个女生
+     *
      * @return
      */
     @PostMapping(value = "/girls")
     public Object girlAdd(@Valid Girl girl, BindingResult bindingResult) {
         //如果验证不通过
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
 //            System.out.println(bindingResult.getFieldError().getDefaultMessage());
             return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
-        girl.setCupSize(girl.getCupSize());
+        girl.setName(girl.getName());
         girl.setAge(girl.getAge());
         girl.setMoney(girl.getMoney());
 
@@ -54,6 +56,7 @@ public class GirlController {
 
     /**
      * 通过id查询一个女生
+     *
      * @param id
      * @return
      */
@@ -64,33 +67,36 @@ public class GirlController {
 
     /**
      * 通过id修改一个女生
+     *
      * @param id
-     * @param cupSize
+     * @param name
      * @param age
      * @return
      */
     @PutMapping(value = "/girls/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id,
-                           @RequestParam("cupSize") String cupSize,
+                           @RequestParam("name") String name,
                            @RequestParam("age") Integer age) {
         Girl girl = new Girl();
         girl.setId(id);
-        girl.setCupSize(cupSize);
+        girl.setName(name);
         girl.setAge(age);
         return girlRepository.save(girl);
     }
 
     /**
      * 通过id删除一个女生
+     *
      * @param id
      */
     @DeleteMapping(value = "/girls/{id}")
     public void girlDelete(@PathVariable("id") Integer id) {
-       girlRepository.delete(id);
+        girlRepository.delete(id);
     }
 
     /**
      * 通过年龄查询女生列表
+     *
      * @param age
      * @return
      */

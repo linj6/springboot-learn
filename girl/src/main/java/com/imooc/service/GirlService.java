@@ -18,23 +18,23 @@ public class GirlService {
     @Transactional
     public void insertTwo() {
         Girl girlA = new Girl();
-        girlA.setCupSize("A");
+        girlA.setName("A");
         girlA.setAge(18);
         girlRepository.save(girlA);
 
         Girl girlB = new Girl();
-        girlB.setCupSize("E");
+        girlB.setName("E");
         girlB.setAge(25);
         girlRepository.save(girlB);
     }
 
     public void getAge(Integer id) throws Exception {
         Girl girl = girlRepository.findOne(id);
-        if(girl != null) {
+        if (girl != null) {
             Integer age = girl.getAge();
-            if(age < 10) {
+            if (age < 10) {
                 throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
-            } else if(age >= 10 && age < 16) {
+            } else if (age >= 10 && age < 16) {
                 throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
             }
         }

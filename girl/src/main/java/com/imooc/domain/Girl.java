@@ -13,7 +13,7 @@ public class Girl {
     @GeneratedValue
     private Integer id;
 
-    private String cupSize;
+    private String name;
 
     @Min(value = 18, message = "未成年禁止入内")
     private Integer age;
@@ -32,12 +32,12 @@ public class Girl {
         this.id = id;
     }
 
-    public String getCupSize() {
-        return cupSize;
+    public String getName() {
+        return name;
     }
 
-    public void setCupSize(String cupSize) {
-        this.cupSize = cupSize;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getAge() {
@@ -60,7 +60,7 @@ public class Girl {
     public String toString() {
         return "Girl{" +
                 "id=" + id +
-                ", cupSize='" + cupSize + '\'' +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", money=" + money +
                 '}';

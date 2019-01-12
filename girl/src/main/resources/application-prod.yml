@@ -3,6 +3,6 @@ server:
 #  context-path: /girl
 
 girl:
-  cupSize: F
+  name: Emily
   age: 18
-  content: "cupSize: ${girl.cupSize} age: ${girl.age}"
+  content: "name: ${girl.name} age: ${girl.age}"

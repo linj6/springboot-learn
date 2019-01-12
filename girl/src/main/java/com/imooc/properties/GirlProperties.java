@@ -7,18 +7,18 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "girl")
 public class GirlProperties {
 
-    private String cupSize;
+    private String name;
 
     private Integer age;
 
     private String content;
 
-    public String getCupSize() {
-        return cupSize;
+    public String getName() {
+        return name;
     }
 
-    public void setCupSize(String cupSize) {
-        this.cupSize = cupSize;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getAge() {
