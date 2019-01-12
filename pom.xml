@@ -22,6 +22,6 @@
         <module>springboot-runner</module>
         <module>springboot-rabbitmq</module>
         <module>springboot-docker</module>
-        <module>springboot-dockercompose-mysql</module>
+        <!--<module>springboot-dockercompose-mysql</module>-->
     </modules>
 </project>
