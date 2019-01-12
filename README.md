@@ -74,6 +74,12 @@
      构建命令：mvn clean package -Dmaven.test.skip=true docker:build
      参考资料：http://www.ityouknow.com/springboot/2018/03/19/spring-boot-docker.html
       
+### 14.springboot-session-redis
     
+     springboot-session-redis: springboot整合spring session和redis解决分布式session共享问题
+     可参考资料：https://www.cnblogs.com/zuidongfeng/p/10260897.html
+     
+      
+     
      
      
