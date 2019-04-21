@@ -79,6 +79,11 @@
      springboot-session-redis: springboot整合spring session和redis解决分布式session共享问题
      可参考资料：https://www.cnblogs.com/zuidongfeng/p/10260897.html
      
+     
+### 15.springboot-http-client
+    
+     springboot-http-client: http-client 使用案例, 包括 GET、POST 表单提交，POST 提交 json 类型参数，文件上传
+     测试用例：HttpUtilTest
       
      
      
