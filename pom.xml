@@ -6,6 +6,7 @@
 
     <groupId>groupId</groupId>
     <artifactId>springboot-learn</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
@@ -23,6 +24,7 @@
         <module>springboot-rabbitmq</module>
         <module>springboot-docker</module>
         <module>springboot-http-client</module>
+        <module>demo-spring-boot-starter</module>
         <!--<module>springboot-dockercompose-mysql</module>-->
     </modules>
 </project>

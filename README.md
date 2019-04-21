@@ -84,7 +84,11 @@
     
      springboot-http-client: http-client 使用案例, 包括 GET、POST 表单提交，POST 提交 json 类型参数，文件上传
      测试用例：HttpUtilTest
-      
+  
+### 16.demo-spring-boot-starter
+    
+     demo-spring-boot-starter: 自定义 starter 示例
+     参考资料：https://juejin.im/entry/58d37630570c350058c2c15c#comment
      
      
      
