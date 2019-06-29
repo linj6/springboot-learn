@@ -89,6 +89,18 @@
     
      demo-spring-boot-starter: 自定义 starter 示例
      参考资料：https://juejin.im/entry/58d37630570c350058c2c15c#comment
-     
+
+
+### 17.springboot-distributed-lock
+       
+     springboot-distributed-lock: 分布式锁学习
+     常见实现方式：
+     1、mysql
+     2、zookeeper
+     3、redis
+     参考资料：
+     https://mp.weixin.qq.com/s/7ze2v9HQH07rvYoNpUTmzw
+     https://crossoverjie.top/2018/03/29/distributed-lock/distributed-lock-redis/
+     https://juejin.im/post/5bbb0d8df265da0abd3533a5#comment
      
      
