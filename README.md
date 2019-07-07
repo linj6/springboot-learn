@@ -102,5 +102,7 @@
      https://mp.weixin.qq.com/s/7ze2v9HQH07rvYoNpUTmzw
      https://crossoverjie.top/2018/03/29/distributed-lock/distributed-lock-redis/
      https://juejin.im/post/5bbb0d8df265da0abd3533a5#comment
+     https://juejin.im/post/5ad1c89c51882555784e6578#heading-5
+     http://tao.he.cn/2019/02/03/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/
      
      

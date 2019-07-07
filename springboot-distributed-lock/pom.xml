@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <!--<module>springboot-distributed-lock-mysql</module>-->
+        <module>springboot-distributed-lock-mysql</module>
         <module>springboot-distributed-lock-redis</module>
         <!--<module>springboot-distributed-lock-zookeeper</module>-->
         <!--<module>springboot-distributed-lock-web</module>-->
