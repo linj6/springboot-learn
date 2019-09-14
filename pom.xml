@@ -26,6 +26,7 @@
         <module>springboot-http-client</module>
         <module>demo-spring-boot-starter</module>
         <module>springboot-distributed-lock</module>
+        <module>springboot-graceful-shutdown</module>
         <!--<module>springboot-dockercompose-mysql</module>-->
     </modules>
 </project>

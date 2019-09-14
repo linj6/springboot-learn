@@ -110,5 +110,15 @@
      springboot-elk: 使用elk收集日志
      参考资料：
      https://juejin.im/post/5c78c66c6fb9a049e702cf3e#heading-4
+     
+     
+### 19.springboot-graceful-shutdown
+    
+      springboot-graceful-shutdown: springboot服务优雅关闭
+      参考资料：
+      https://juejin.im/post/5b023d4c6fb9a07aa542988c
+      http://cxytiandi.com/blog/detail/12919
+      https://www.jianshu.com/p/44ef43b282f0
+     
  
      
