@@ -28,7 +28,9 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    // session过期时间 30分钟
+    /**
+     * session过期时间 30分钟
+     */
     private static final long SESSION_TIMEOUT = 60 * 30 * 1000;
 
     @Bean(name = "sessionManager")

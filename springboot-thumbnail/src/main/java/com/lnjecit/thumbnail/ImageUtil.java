@@ -16,10 +16,14 @@ import java.util.List;
  **/
 public class ImageUtil {
 
-    // 图片默认缩放比率
+    /**
+     * 图片默认缩放比率
+     */
     private static final double DEFAULT_SCALE = 0.8d;
 
-    // 缩略图后缀
+    /**
+     * 缩略图后缀
+     */
     private static final String SUFFIX = "-thumbnail";
 
 
@@ -123,8 +127,11 @@ public class ImageUtil {
     public static boolean isImage(String extension) {
         String[] imageExtension = new String[]{"jpeg", "jpg", "gif", "bmp", "png"};
 
-        for (String e : imageExtension) if (extension.toLowerCase().equals(e)) return true;
-
+        for (String e : imageExtension) {
+            if (extension.toLowerCase().equals(e)) {
+                return true;
+            }
+        }
         return false;
     }
 

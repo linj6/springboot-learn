@@ -20,8 +20,9 @@ public class SpringContextUtils implements ApplicationContextAware, DisposableBe
 	/**
 	 * 实现ApplicationContextAware接口, 注入Context到静态变量中.
 	 */
-	public void setApplicationContext(ApplicationContext applicationContext) {
-		logger.debug("注入ApplicationContext到SpringContextUtils:" + applicationContext);
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        logger.debug("注入ApplicationContext到SpringContextUtils:" + applicationContext);
 
 		if (SpringContextUtils.applicationContext != null) {
 			logger.warn("SpringContextUtils中的ApplicationContext被覆盖, 原有ApplicationContext为:"

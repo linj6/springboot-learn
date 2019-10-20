@@ -16,12 +16,14 @@ import java.util.*;
 @Component
 public class FileUploadUtil {
 
-    protected static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);//日志对象
+    protected static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);
     private static FileUploadProperties fileUploadProperties;
     private static final String FILE_SEPERATOR = "/";
     private static final String COMMA = ".";
-    private static final String RELATIVE_PATH = "relativePath";//图片保存的相对路径
-    private static final String ACCESS_PATH = "accessPath";//图片访问路径，用于前台图片回显
+    //图片保存的相对路径
+    private static final String RELATIVE_PATH = "relativePath";
+    //图片访问路径，用于前台图片回显
+    private static final String ACCESS_PATH = "accessPath";
 
     @Autowired
     public FileUploadUtil(FileUploadProperties fileUploadProperties) {
@@ -60,15 +62,15 @@ public class FileUploadUtil {
             if (file == null || file.isEmpty()) {
                 throw new RuntimeException("请上传文件");
             }
-            String fileName = DateUtil.DateToString(new Date(), DateUtil.TIMESTAMP_TO_STRING_PATTERN);
+            String fileName = DateUtil.dateToString(new Date(), DateUtil.TIMESTAMP_TO_STRING_PATTERN);
             // 文件扩展名
             String suffix = getFileExtention(file);
             String newFileName = prefix + fileName + COMMA + suffix;
             //文件保存路径
-            String urlPath = path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR + newFileName;
+            String urlPath = path + FILE_SEPERATOR + DateUtil.dateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR + newFileName;
             //根目录
             String fileUploadPath = getFileUploadPath();
-            String fileDirectory = fileUploadPath + FILE_SEPERATOR + path + FILE_SEPERATOR + DateUtil.DateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR;
+            String fileDirectory = fileUploadPath + FILE_SEPERATOR + path + FILE_SEPERATOR + DateUtil.dateToString(new Date(), DateUtil.DATE_TO_STRING_PATTERN) + FILE_SEPERATOR;
             String filePath = fileUploadPath + FILE_SEPERATOR + urlPath;
             File f = new File(fileDirectory);
             if (!f.exists() && !f.isDirectory()) {
@@ -139,7 +141,11 @@ public class FileUploadUtil {
     public static boolean isImage(String extension) {
         String[] imageExtension = new String[]{"jpeg", "jpg", "gif", "bmp", "png"};
 
-        for (String e : imageExtension) if (extension.toLowerCase().equals(e)) return true;
+        for (String e : imageExtension) {
+            if (extension.toLowerCase().equals(e)) {
+                return true;
+            }
+        }
 
         return false;
     }

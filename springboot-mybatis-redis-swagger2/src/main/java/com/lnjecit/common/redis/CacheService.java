@@ -62,7 +62,7 @@ public class CacheService extends CachingConfigurerSupport {
 
     @SuppressWarnings("rawtypes")
     @Bean
-    public CacheManager CacheManager(RedisTemplate redisTemplate) {
+    public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
         // 设置cache过期时间,时间单位是秒
         rcm.setDefaultExpiration(60);

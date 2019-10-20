@@ -25,9 +25,13 @@ import java.util.Map;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    //sheet标题
+    /**
+     * sheet标题
+     */
     private final static String SHEET1_TITLE = "产品列表";
-    //sheet列数
+    /**
+     * sheet列数
+     */
     private final static int SHEET1_COLUNM = 9;
 
     @Autowired
@@ -90,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
                     //状态
                     newRow.getCell(7).setCellValue(product.getStatus());
                     //创建时间
-                    newRow.getCell(8).setCellValue(DateUtil.DateToString(product.getCreateTime(), DateUtil.DATE_TO_STRING_DETAIAL_PATTERN));
+                    newRow.getCell(8).setCellValue(DateUtil.dateToString(product.getCreateTime(), DateUtil.DATE_TO_STRING_DETAIAL_PATTERN));
 
                     counter++;
                 }
@@ -154,8 +158,10 @@ public class ProductServiceImpl implements ProductService {
         HSSFRow titleRow = sheet1.createRow(counter);
         CellStyle cellStyle = ExcelUtil.getCellStyle(workbook);
         HSSFFont font = workbook.createFont();
-        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);//粗体显示
-        font.setFontHeightInPoints((short) 12);  //字体大小
+        //粗体显示
+        font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        //字体大小
+        font.setFontHeightInPoints((short) 12);
         cellStyle.setFont(font);
 
         //创建标题行中的单元格

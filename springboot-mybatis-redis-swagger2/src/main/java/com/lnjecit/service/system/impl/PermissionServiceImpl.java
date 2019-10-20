@@ -174,20 +174,20 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionDao, Permis
     }
 
     private List<Permission> getSubPermissions(Long prentId, List<Permission> allPermissions, Permission sourcePermission) {
-        List<Permission> Permissions = new ArrayList<>();
+        List<Permission> permissions = new ArrayList<>();
         for (Permission permission : allPermissions) {
             if (prentId.longValue() == permission.getParentId().longValue()) {
-                Permissions.add(permission);
+                permissions.add(permission);
             }
         }
         // 退出递归条件：该权限下无下级权限
-        if (!Permissions.isEmpty()) {
-            sourcePermission.setSubPermissions(Permissions);
-            for (Permission permission : Permissions) {
+        if (!permissions.isEmpty()) {
+            sourcePermission.setSubPermissions(permissions);
+            for (Permission permission : permissions) {
                 getSubPermissions(permission.getId(), allPermissions, permission);
             }
         }
-        return Permissions;
+        return permissions;
     }
 
 }

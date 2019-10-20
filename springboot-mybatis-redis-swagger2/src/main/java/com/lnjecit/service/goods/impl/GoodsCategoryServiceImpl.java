@@ -188,21 +188,21 @@ public class GoodsCategoryServiceImpl extends BaseServiceImpl<GoodsCategoryDao, 
     }
 
     private List<GoodsCategory> getSubGoodsCategories(Long prentId, List<GoodsCategory> allGoodsCategories, GoodsCategory sourceGoodsCategory) {
-        List<GoodsCategory> GoodsCategories = new ArrayList<>();
+        List<GoodsCategory> goodsCategories = new ArrayList<>();
         for (GoodsCategory goodsCategory : allGoodsCategories) {
             if (prentId.longValue() == goodsCategory.getParentId().longValue()) {
-                GoodsCategories.add(goodsCategory);
+                goodsCategories.add(goodsCategory);
             }
         }
 
         // 退出递归条件：该分类下无子分类，
-        if (!GoodsCategories.isEmpty()) {
-            sourceGoodsCategory.setSubGoodsCategories(GoodsCategories);
-            for (GoodsCategory goodsCategory : GoodsCategories) {
+        if (!goodsCategories.isEmpty()) {
+            sourceGoodsCategory.setSubGoodsCategories(goodsCategories);
+            for (GoodsCategory goodsCategory : goodsCategories) {
                 getSubGoodsCategories(goodsCategory.getId(), allGoodsCategories, goodsCategory);
             }
         }
-        return GoodsCategories;
+        return goodsCategories;
     }
     
 

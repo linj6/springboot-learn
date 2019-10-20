@@ -20,7 +20,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class Swagger2Config {
 
-    // swagger是否开启 true:开启 false:不开启
+    /**
+     * swagger是否开启 true:开启 false:不开启
+     */
     @Value("${swagger.enable}")
     private String enable;
 

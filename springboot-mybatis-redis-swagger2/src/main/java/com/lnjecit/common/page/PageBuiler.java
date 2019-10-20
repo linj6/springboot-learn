@@ -20,9 +20,10 @@ public final class PageBuiler {
     private static final int DEFAULT_PAGE_NUM = 1;
     // 默认每页记录数
     private static final int DEFAULT_PAGE_SIZE = 10;
-
-    private int pageNum; // 页码
-    private int pageSize;// 每页记录数
+    // 页码
+    private int pageNum;
+    // 每页记录数
+    private int pageSize;
 
     public PageBuiler() {
 
@@ -61,7 +62,7 @@ public final class PageBuiler {
         }
     }
 
-    public static final PageInfo<?> builder(Map<String, Object> params) {
+    public static PageInfo<?> builder(Map<String, Object> params) {
         return new PageBuiler(params).build();
     }
 

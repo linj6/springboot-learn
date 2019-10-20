@@ -24,7 +24,7 @@ public class IpUtil {
         }
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
-            if (ip.equals("127.0.0.1")) {
+            if ("127.0.0.1".equals(ip)) {
                 //根据网卡取本机配置的IP
                 InetAddress inet = null;
                 try {

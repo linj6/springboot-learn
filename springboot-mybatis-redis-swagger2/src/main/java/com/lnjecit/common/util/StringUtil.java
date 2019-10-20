@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.regex.Pattern.compile;
+
 /**
  * 字符串工具类
  *
@@ -78,8 +80,9 @@ public class StringUtil {
      */
     public static String transferToCamel(String before, boolean firstChar2Upper) {
         //不带"_"的字符串,则直接首字母大写后返回
-        if (!before.contains("_"))
+        if (!before.contains("_")) {
             return firstChar2Upper ? initCapitalize(before) : before;
+        }
         String[] strs = before.split("_");
         StringBuffer after = null;
         if (firstChar2Upper) {
@@ -131,7 +134,7 @@ public class StringUtil {
      */
     public static boolean isNumeric(String str) {
         // 该正则表达式可以匹配所有的数字 包括负数
-        Pattern pattern = Pattern.compile("-?[0-9]+(\\.[0-9]+)?");
+        Pattern pattern = compile("-?[0-9]+(\\.[0-9]+)?");
         String bigStr;
         try {
             bigStr = new BigDecimal(str).toString();
@@ -154,7 +157,7 @@ public class StringUtil {
      * @return
      */
     public static boolean usernameFormatCheck(String username) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_-]+([\\w@.]{3,31}?)$");
+        Pattern pattern = compile("^[a-zA-Z0-9_-]+([\\w@.]{3,31}?)$");
         Matcher m = pattern.matcher(username);
         if (!m.matches()) {
             return false;
